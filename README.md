@@ -1,43 +1,37 @@
-# Zhong 的个人主页 · V1
+# Zhong
 
-一个清爽、适配手机的个人主页，包含个人介绍、兴趣、近况、作品入口和数字分身资料问答。
+以 [Zach Holman 当前首页](https://zachholman.com/) 为视觉参考的静态个人网站。
 
-## 本地预览
+保留其首页的浅蓝底色、渐变介绍横幅、年份与日期文章列表、右侧简短介绍，以及“更多关于我”、文章阅读、社交链接和 Atom 订阅。内容采用 Zhong 提供的个人资料，文章是本次整理的简短介绍，不包含虚构的经历或历史文章。
+
+上一版的数字分身、聊天脚本、卡片式内容区、顶部导航和按钮均已删除。历史版本可从 Git 记录中恢复。
+
+## 运行
 
 需要 Node.js 20 或更新版本，无需安装依赖。
 
 ```sh
-npm run dev
+npm run dev      # http://127.0.0.1:4173
+npm test         # 确认打包不会残留已删除的代码
+npm run build    # 清理并生成 dist/
+npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 ```
 
-访问终端显示的 `http://127.0.0.1:4173`。按 Ctrl+C 关闭。若端口占用，可通过环境变量 `PORT` 设置其他端口。
+## 内容在哪
 
-```sh
-npm test          # 资料问答测试
-npm run build     # 生成 dist/ 静态文件
-npm run preview   # 预览 dist/，请先停止同端口的 dev 服务
-```
+- `index.html`：首页介绍、文章列表、侧栏。
+- `styles.css`：全站样式与手机布局。
+- `about/index.html`：个人介绍。
+- `posts/*/index.html`：文章正文。
+- `atom.xml`：文章订阅；增加文章时同步更新。
+- `scripts/`：本地预览与静态打包，不参与网页运行。
 
-## 数字分身的范围
-
-V1 是**本地规则匹配的资料问答原型，尚未接入大模型**。支持自我介绍、最近在做、作品、联系、兴趣和个人方向，也能组合回答多个主题；不能自由推理或持续理解上下文。未提供的个人事实会明确说明，不编造学校、邮箱、微信或已完成的项目。
-
-对话仅存在本页内存中；清空或刷新后消失。没有统计、追踪、外部字体、模型请求或 API Key。GitHub 联系入口采用需求中指定仓库的所属账号。
-
-## 修改内容
-
-- `index.html`：页面文案、项目和联系入口。
-- `styles.css`：配色和响应式布局。
-- `assets/avatar.svg`：Z 字母头像，可替换成自己的照片并更新 HTML 引用。
-- `src/knowledge.js`：数字分身资料和匹配规则。
-- `src/app.js`：会话和输入交互。
-
-后续接入模型时，使用服务端代理保管 Key，并保留“只依据已确认个人资料回答”的约束。
+网站没有前端 JavaScript、后端、API Key 或第三方请求。侧栏内容直接保存在各 HTML 文件中，修改个人资料时同步修改这四个页面。
 
 ## 发布
 
-`npm run build` 后将 `dist/` 上传至任意静态托管平台即可，资源使用相对路径，支持 GitHub Pages 子路径部署。
+把 `dist/` 放到静态托管平台即可，支持 GitHub Pages 子目录部署。
 
-GitHub Pages 也可直接使用仓库主分支根目录：在仓库 **Settings → Pages → Build and deployment** 选择 **Deploy from a branch**，分支 **main**、目录 **/(root)** 并保存。`.nojekyll` 禁用不需要的 Jekyll 处理。具体操作参考 [GitHub 官方文档](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site)。推送代码本身不代表已启用 Pages。
+也可以在 GitHub 仓库 Settings → Pages 选择 main 分支的根目录发布。当前 Atom 中 `xml:base` 使用预期的 Pages 地址 `https://rapeter.github.io/my_homepage/`；使用其他地址时须同步修改。代码推送不代表已启用公网托管。
 
-需求与实现取舍见 [设计说明](docs/v1-design.md)。
+复刻范围和验证记录见 [docs/reference.md](docs/reference.md)。

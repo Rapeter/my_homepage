@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN" xml:base="https://rapeter.github.io/my_homepage/">
+  <title>Zhong</title>
+  <subtitle>一个正在学习 AI 应用开发的学生。</subtitle>
+  <id>urn:uuid:6d892941-805e-41d9-aec6-dc51a7882be4</id>
+  <link href="./" />
+  <link href="atom.xml" rel="self" type="application/atom+xml" />
+  <updated>2026-10-09T00:00:00+08:00</updated>
+  <author><name>Zhong</name><uri>https://github.com/Rapeter</uri></author>
+  <entry>
+    <title>从这个个人主页开始</title>
+    <id>urn:uuid:ca6103b3-7efa-4c6f-8a9d-d3b35917829d</id>
+    <link href="posts/starting/" />
+    <published>2026-10-09T00:00:00+08:00</published>
+    <updated>2026-10-09T00:00:00+08:00</updated>
+    <summary>我是 Zhong，一个正在学习 AI 应用开发的学生。从搭建个人主页开始，介绍我自己和正在做的事。</summary>
+  </entry>
+  <entry>
+    <title>最近在做什么：学习 Agent 与准备求职</title>
+    <id>urn:uuid:a20826db-c9be-42e9-b81d-4ec37c9278c5</id>
+    <link href="posts/learning-and-looking/" />
+    <published>2026-10-09T00:00:00+08:00</published>
+    <updated>2026-10-09T00:00:00+08:00</updated>
+    <summary>最近在学习 Agent 相关内容，同时搭建个人网站、丰富简历，准备面试和招聘。</summary>
+  </entry>
+</feed>

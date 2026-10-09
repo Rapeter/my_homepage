@@ -4,55 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f0f9ff" />
-    <meta name="description" content="我是 Zhong，一个正在学习 AI 应用开发的学生。了解我的近况、兴趣与作品，和我的数字分身聊一聊。" />
-    <title>Zhong · 把复杂问题讲成人话</title>
-    <link rel="icon" type="image/svg+xml" href="./assets/avatar.svg" />
+    <meta name="description" content="Zhong，一个正在学习 AI 应用开发的学生。这里记录我正在做的事。" />
+    <title>Zhong</title>
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="./styles.css" />
-    <script type="module" src="./src/app.js"></script>
+    <link rel="alternate" type="application/atom+xml" title="Zhong 的文章" href="./atom.xml" />
   </head>
   <body>
-    <a class="skip-link" href="#main">跳到主要内容</a>
-    <header class="site-header wrap">
-      <a class="brand" href="#" aria-label="Zhong 主页"><span class="brand-mark" aria-hidden="true">z.</span><span>Zhong<span class="brand-dot">.</span></span></a>
-      <nav aria-label="主要导航">
-        <a href="#about">关于我</a><a href="#now">最近在做</a><a href="#chat">聊聊我 <span aria-hidden="true">↗</span></a>
-      </nav>
-      <a class="header-github" href="https://github.com/Rapeter" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-    </header>
-
-    <main id="main" class="wrap">
-      <section class="hero" aria-labelledby="hero-heading">
-        <div class="intro">
-          <div class="identity"><img src="./assets/avatar.svg" alt="Zhong 的 Z 字母头像" width="74" height="74" /><div><span class="status"><span class="status-dot" aria-hidden="true"></span> 学生，正在探索下一站</span><p>保持好奇，持续构建。</p></div></div>
-          <h1 id="hero-heading">嗨，我是 Zhong。</h1>
-          <p class="intro-copy">一个正在学习 AI 应用开发的学生。</p>
-          <p class="intro-note">把复杂问题讲成人话。</p>
-          <p class="intro-detail">探索 Agent，也在寻找让想法落地的机会。</p>
-          <div class="hero-actions"><a class="button primary" href="#chat">和我的数字分身聊聊 <span aria-hidden="true">↗</span></a><a class="text-link" href="#about">再了解我一点 <span aria-hidden="true">↓</span></a></div>
-          <div class="interest-line"><span class="tiny-spark" aria-hidden="true">✳</span><span>AI 应用</span><span>足球</span><span>旅游</span><span>美食</span><span>Rap</span></div>
-        </div>
-
-        <section id="chat" class="chat-panel" aria-labelledby="chat-heading">
-          <div class="chat-header"><div class="twin-avatar" aria-hidden="true">z<span>✦</span></div><div class="chat-heading"><h2 id="chat-heading">Zhong 的数字分身</h2><p><span class="status-dot" aria-hidden="true"></span> 换个方式，认识我</p></div><button id="reset-chat" class="icon-button" type="button" aria-label="清空对话" title="清空对话"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 11a9 9 0 1 1 2.7 7M3 4v7h7" /></svg></button></div>
-          <div class="chat-body"><div class="conversation-label"><span></span> 从一句你好开始 <span></span></div><div id="messages" class="messages" role="log" aria-label="与 Zhong 数字分身的对话" aria-live="polite" aria-relevant="additions" tabindex="0"></div></div>
-          <div class="chat-bottom">
-            <div class="suggestions" aria-label="快捷问题"><button type="button" data-question="你现在在做什么？">最近在忙什么？</button><button type="button" data-question="你有哪些作品？">有哪些作品？</button><button type="button" data-question="怎么联系你？">怎么联系你？</button></div>
-            <form id="chat-form"><label class="sr-only" for="question">想了解 Zhong 的什么？</label><div class="input-wrap"><textarea id="question" name="question" rows="1" maxlength="500" placeholder="想了解我的什么？问问看…" aria-describedby="chat-hint"></textarea><button id="send" type="submit" class="send-button" aria-label="发送消息" disabled><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15" /></svg></button></div><div class="input-meta"><span id="chat-hint">Enter 发送 · Shift + Enter 换行</span><span id="character-count" aria-label="已输入字符数">0 / 500</span></div></form>
-            <p class="prototype-note"><span aria-hidden="true">◇</span> 资料问答原型 · 对话仅保留在本页</p>
+    <a class="skip-link" href="#content">跳到正文</a>
+    <div class="site-layout">
+      <main id="content" class="main-column" tabindex="-1">
+        <header class="intro-banner">
+          <div class="banner-copy">
+            <h1>Zhong 是一个正在学习 <a href="./about/">AI 应用开发</a>的学生。</h1>
+            <p>这里记录我正在做的事。</p>
           </div>
-          <noscript><p class="noscript">请启用 JavaScript 使用数字分身；个人介绍仍可直接阅读。</p></noscript>
+        </header>
+
+        <section class="archive" aria-label="文章列表">
+          <div class="year-group">
+            <h2 class="archive-year">2026</h2>
+            <ol class="post-list">
+              <li><time datetime="2026-10-09">Oct 9</time><a href="./posts/starting/">从这个个人主页开始</a></li>
+              <li><time datetime="2026-10-09">Oct 9</time><a href="./posts/learning-and-looking/">最近在做什么：学习 Agent 与准备求职</a></li>
+            </ol>
+          </div>
         </section>
-      </section>
+      </main>
 
-      <div class="section-grid">
-        <section id="about" class="about" aria-labelledby="about-heading"><p class="section-label">关于我</p><h2 id="about-heading">一个学生，<br />一点好奇心。</h2><p class="section-copy">对 AI 应用感兴趣，也关心一个想法如何被理解、被整理，再变成真正能用的东西。</p><div class="about-items"><div><span class="small-icon blue" aria-hidden="true">⌘</span><div><h3>AI 应用</h3><p>从学习 Agent，到动手构建</p></div></div><div><span class="small-icon mint" aria-hidden="true">≋</span><div><h3>内容表达与知识整理</h3><p>把复杂的内容梳理清楚</p></div></div></div><p class="personal-note">“喜欢把复杂问题讲成人话。”</p></section>
-        <section id="now" class="now" aria-labelledby="now-heading"><div class="section-top"><p class="section-label">最近在做</p><span class="live-label"><span class="status-dot" aria-hidden="true"></span> 持续进行中</span></div><h2 id="now-heading">把想法，一点点落地。</h2><div class="activity"><span class="activity-icon" aria-hidden="true">↗</span><div><h3>学习 Agent 相关内容</h3><p>理解 AI 应用，积累动手实践。</p></div><span class="activity-tag">学习中</span></div><div class="activity"><span class="activity-icon" aria-hidden="true">⌁</span><div><h3>搭建我的个人网站</h3><p>就是你正在看的这里，记录一个开始。</p></div><span class="activity-tag">构建中</span></div><div class="activity"><span class="activity-icon" aria-hidden="true">◎</span><div><h3>为下一段经历做准备</h3><p>丰富简历，准备面试和招聘。</p></div><span class="activity-tag">求职中</span></div></section>
-      </div>
-
-      <section id="work" class="work" aria-labelledby="work-heading"><div class="work-title"><p class="section-label">我的作品</p><h2 id="work-heading">从这里开始。</h2><p>还在积累，也在认真做。</p></div><a class="project-card" href="https://github.com/Rapeter/my_homepage" target="_blank" rel="noopener noreferrer"><div class="project-art" aria-hidden="true"><div class="mini-window"><div class="mini-dots"><i></i><i></i><i></i></div><div class="mini-content"><span>z.</span><div><i></i><i></i><i></i></div></div></div><span class="project-version">v1.0</span></div><div class="project-info"><span class="project-status">正在搭建</span><h3>我的个人主页 <span aria-hidden="true">↗</span></h3><p>一个了解我、也能和数字分身聊聊天的小空间。</p><span class="project-tech">个人网站 / 数字分身原型</span></div></a></section>
-
-      <section id="contact" class="contact" aria-labelledby="contact-heading"><div><span class="contact-spark" aria-hidden="true">✳</span><h2 id="contact-heading">很高兴，在这里遇见你。</h2><p>聊 AI，聊想法，或者打个招呼。</p></div><a class="button contact-button" href="https://github.com/Rapeter" target="_blank" rel="noopener noreferrer">在 GitHub 找到我 <span aria-hidden="true">↗</span></a></section>
-    </main>
-    <footer class="site-footer wrap"><span>© <span id="year">2026</span> Zhong</span><span>保持好奇，慢慢生长。<span class="footer-seed" aria-hidden="true">✳</span></span><a href="#">回到顶部 ↑</a></footer>
+      <aside class="sidebar" aria-label="关于 Zhong">
+        <div class="sidebar-inner">
+          <div class="profile-notes">
+            <p><strong>现在 /</strong> 学习 Agent 相关内容，搭建自己的个人网站，也在准备求职。</p>
+            <p><strong>关注 /</strong> 内容表达、AI 应用和知识整理。喜欢把复杂问题讲成人话。</p>
+            <p><strong>生活 /</strong> 足球、旅游、美食和 Rap。</p>
+          </div>
+          <p class="about-link"><a href="./about/">更多关于 Zhong →</a></p>
+          <div class="social-links">
+            <a href="https://github.com/Rapeter" aria-label="Zhong 的 GitHub" title="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.6 6.8-7.3a5.7 5.7 0 0 0-1.5-3.9 5.3 5.3 0 0 0-.1-3.8s-1.2-.4-4 1.5a13.4 13.4 0 0 0-7.2 0C5.2.1 4 .5 4 .5a5.3 5.3 0 0 0-.1 3.8A5.7 5.7 0 0 0 2.4 8.2c0 5.7 3.5 6.9 6.8 7.3a3.4 3.4 0 0 0-1 2.6V22" /></svg></a>
+            <a href="./atom.xml" aria-label="订阅 Zhong 的文章" title="RSS / Atom 订阅"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><circle cx="4" cy="20" r="3" /><path d="M1 12.5A10.5 10.5 0 0 1 11.5 23h4A14.5 14.5 0 0 0 1 8.5ZM1 5A18 18 0 0 1 19 23h4A22 22 0 0 0 1 1Z" /></svg></a>
+          </div>
+          <p class="sidebar-note"><strong>正在求职。</strong> 我在丰富简历，准备面试和招聘。<a href="https://github.com/Rapeter">在 GitHub 找到我 →</a></p>
+        </div>
+      </aside>
+    </div>
   </body>
 </html>

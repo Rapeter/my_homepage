@@ -1,0 +1,13 @@
+{
+  "name": "zhong-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "dev": "node scripts/serve.js",
+    "preview": "node scripts/serve.js dist",
+    "build": "node scripts/build.js",
+    "test": "node --test"
+  }
+}

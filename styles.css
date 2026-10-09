@@ -20,6 +20,9 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 
 /* Measured from the reference: 48px inset and a 320px introduction. */
 .intro-banner {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   margin: 48px;
   min-height: 320px;
   border-radius: 8px;
@@ -29,7 +32,8 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   justify-content: flex-end;
   padding: 48px 64px 48px 96px;
 }
-.banner-copy { margin-left: 160px; text-align: right; font-size: 24px; font-weight: 600; line-height: 32px; color: white; }
+.banner-avatar { position: absolute; z-index: -1; left: 0; bottom: 0; width: 44%; height: 110%; object-fit: cover; object-position: 60% 25%; mask-image: linear-gradient(to right, #000 70%, transparent); }
+.banner-copy { position: relative; margin-left: 160px; text-align: right; font-size: 24px; font-weight: 600; line-height: 32px; color: white; }
 .banner-copy h1 { font: inherit; }
 .banner-copy a { color: white; background: rgb(147 51 234 / 75%); border: 0; border-radius: 4px; padding: 4px 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
 .banner-copy a:hover { background: rgb(244 114 182 / 25%); }
@@ -57,6 +61,7 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 @media (max-width: 1023px) {
   .site-layout { display: block; }
   .intro-banner { margin: 16px; min-height: 192px; padding: 24px 16px 24px 144px; }
+  .banner-avatar { width: 44%; height: 100%; object-position: 65% 25%; }
   .banner-copy { margin-left: 0; font-size: 14px; line-height: 20px; }
   .banner-copy a { padding: 0 4px; }
   .archive { margin: 0 16px 64px; }
@@ -75,6 +80,18 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .prose { font-size: 17px; line-height: 1.9; font-weight: 400; color: #475569; margin-top: 32px; }
 .prose p + p { margin-top: 24px; }
 .prose h2 { font-size: 22px; color: #1e293b; font-weight: 600; margin: 36px 0 12px; }
+.about-page { width: calc(100% - 128px); max-width: 808px; margin: 48px auto 64px; }
+.reading-page .about-heading { font-size: 30px; font-weight: 600; line-height: 1.375; letter-spacing: -.4px; color: #475569; }
+.about-page .prose { font-family: Georgia, "Songti SC", "SimSun", serif; font-size: 20px; line-height: 1.9; margin-top: 40px; }
+.about-page .prose a { overflow-wrap: anywhere; }
+.contact-links { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding: 4px; margin-top: 64px; background: #e0e7ff; border-radius: 8px; font-family: ui-sans-serif, system-ui, sans-serif; }
+.contact-links .contact-label { display: flex; flex-direction: column; justify-content: center; padding: 16px; }
+.contact-label h2 { font-size: 14px; font-weight: 600; color: #475569; margin: 0; }
+.contact-label p { font-size: 12px; line-height: 1.5; color: #94a3b8; margin: 0; }
+.contact-links a { border: 0; border-radius: 4px; min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 20px 8px; background: #f0f9ff; color: #4f46e5; }
+.contact-links a:hover { color: #db2777; }
+.contact-links strong { font-size: 15px; font-weight: 600; }
+.contact-links span { font-size: 11px; line-height: 1.5; color: #64748b; text-align: center; overflow-wrap: anywhere; }
 .back-link { margin-top: 44px; font-size: 14px; font-weight: 500; }
 .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 10px; background: white; transform: translateY(-160%); }
 .skip-link:focus { transform: none; }
@@ -83,4 +100,11 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   .reading-page h1 { font-size: 28px; }
   .breadcrumbs { margin-bottom: 28px; }
   .prose { font-size: 16px; }
+  .reading-page .about-heading { font-size: 25px; }
+  .about-page { width: auto; margin: 24px 16px 64px; }
+  .about-page .prose { font-size: 18px; }
+}
+@media (max-width: 540px) {
+  .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-links .contact-label { grid-column: 1 / -1; }
 }

@@ -8,7 +8,7 @@ const output = resolve(root, 'dist');
 if (dirname(output) !== resolve(root)) throw new Error('Invalid build output directory');
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
-for (const file of ['index.html', 'styles.css', 'assets', 'about', 'posts', 'atom.xml']) {
+for (const file of ['index.html', 'styles.css', 'assets', 'about', 'posts']) {
   await cp(new URL(`../${file}`, import.meta.url), `${output}/${file}`, { recursive: true });
 }
 console.log('Built static website in dist/');

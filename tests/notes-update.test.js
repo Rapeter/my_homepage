@@ -10,10 +10,10 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
   try {
     await mkdir(join(workspace, 'scripts'));
     await mkdir(join(workspace, 'notes'));
-    for (const file of ['site.js', 'notes.js', 'markdown.js']) await cp(new URL(`../scripts/${file}`, import.meta.url), join(workspace, 'scripts', file));
+    for (const file of ['site.js', 'notes.js', 'markdown.js', 'content-meta.js']) await cp(new URL(`../scripts/${file}`, import.meta.url), join(workspace, 'scripts', file));
     await cp(new URL('../index.html', import.meta.url), join(workspace, 'index.html'));
     await writeFile(join(workspace, 'package.json'), '{"type":"module"}');
-    const entries = [{ slug: 'first', title: '第一篇', description: '持续更新', status: '整理中', updated: '2026-10-10' }];
+    const entries = [{ slug: 'first', title: '第一篇', description: '持续更新', status: '整理中', updated: '2026-10-10', tags: ['Agent', '工程化'] }];
     const generate = () => execFileSync(process.execPath, ['scripts/notes.js'], { cwd: workspace });
     await writeFile(join(workspace, 'notes', 'collection.json'), JSON.stringify(entries));
     await writeFile(join(workspace, 'notes', 'first.md'), '**Q1：原题**\n原版内容');
@@ -26,6 +26,11 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     generate();
     const updated = await readFile(join(workspace, 'notes', 'first', 'index.html'), 'utf8');
     assert.match(updated, /更新后的内容/);
+    assert.match(updated, /9 字/);
+    assert.match(updated, /约 1 分钟/);
+    assert.match(updated, /工程化/);
+    const directory = await readFile(join(workspace, 'notes', 'index.html'), 'utf8');
+    assert.match(directory, /9 字/);
     assert.doesNotMatch(updated, /原版内容/);
     assert.match(await readFile(join(workspace, 'notes', 'index.html'), 'utf8'), /第一篇[\s\S]*第二篇/);
     assert.match(await readFile(join(workspace, 'notes', 'second', 'index.html'), 'utf8'), /新的正文/);

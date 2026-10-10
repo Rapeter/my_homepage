@@ -2,9 +2,11 @@ import { cp, mkdir, rm } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateNotes } from './notes.js';
+import { generateArticles } from './articles.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = resolve(root, 'dist');
+await generateArticles();
 await generateNotes();
 // Only clean the fixed build directory inside this repository.
 if (dirname(output) !== resolve(root)) throw new Error('Invalid build output directory');

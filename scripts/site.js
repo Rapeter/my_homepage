@@ -15,7 +15,7 @@ export async function renderPage({ title, description, content, depth = 1, scrip
     <meta name="theme-color" content="#f0f9ff" />
     <meta name="description" content="${escapeHtml(description)}" />
     <title>${escapeHtml(title)} · Zhong</title>
-    <link rel="icon" href="${prefix}assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="${prefix}assets/favicon-avatar.ico" type="image/x-icon" />
     <link rel="stylesheet" href="${prefix}styles.css" />
 ${script ? `    <script type="module" src="${prefix}${script}"></script>\n` : ''}  </head>
   <body>

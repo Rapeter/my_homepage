@@ -27,6 +27,7 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `notes/index.html`、`notes/*/index.html`：生成的笔记目录及阅读页。
 - `styles.css`：全站样式与响应式布局。
 - `assets/`：图片和网站图标。
+- `assets/avatar.jpg`、`assets/favicon-avatar.ico`：页面头像及由同一头像生成的浏览器图标。
 - `scripts/serve.js`：本地静态服务器。
 - `scripts/build.js`：静态文件构建脚本。
 - `scripts/notes.js`、`scripts/markdown.js`：笔记页面生成和 Markdown 转换。

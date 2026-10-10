@@ -5,6 +5,8 @@
   "type": "module",
   "engines": { "node": ">=20" },
   "scripts": {
+    "notes": "node scripts/notes.js",
+    "predev": "npm run notes",
     "dev": "node scripts/serve.js",
     "preview": "node scripts/serve.js dist",
     "build": "node scripts/build.js",

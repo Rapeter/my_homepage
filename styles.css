@@ -108,3 +108,72 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .contact-links .contact-label { grid-column: 1 / -1; }
 }
+
+/* Small, independent spaces for experiments and long-form notes. */
+[hidden] { display: none !important; }
+.section-links { display: grid; gap: 10px; margin-top: 14px; justify-items: start; }
+.demo-page { width: calc(100% - 96px); max-width: 960px; margin: 48px auto 64px; }
+.notes-page { width: calc(100% - 128px); max-width: 808px; margin: 48px auto 64px; }
+.demo-page h1, .notes-page h1 { font-size: 30px; font-weight: 600; letter-spacing: -.4px; }
+.page-intro { margin-top: 20px; font-size: 16px; line-height: 1.9; font-weight: 400; color: #475569; }
+.demo-disclosure, .note-meta { margin-top: 12px; font-size: 12px; line-height: 1.8; font-weight: 400; color: #64748b; }
+.demo-task { margin-top: 32px; padding-left: 16px; border-left: 2px solid #c7d2fe; color: #475569; font-size: 15px; font-weight: 400; line-height: 1.9; }
+.demo-task strong { font-weight: 600; color: #1e293b; }
+.demo-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.demo-page button { font: inherit; font-size: 13px; font-weight: 500; padding: 9px 16px; border: 1px solid #c7d2fe; border-radius: 5px; background: transparent; color: #475569; cursor: pointer; }
+.demo-page button.primary-control { border-color: #4f46e5; background: #4f46e5; color: white; }
+.demo-page button:hover:not(:disabled) { border-color: #818cf8; background: #e0e7ff; color: #3730a3; }
+.demo-page button:disabled { cursor: default; opacity: .45; }
+.demo-page button:focus-visible, summary:focus-visible { outline: 2px solid #6366f1; outline-offset: 4px; }
+.demo-page .reset-control { border-color: transparent; color: #64748b; }
+.demo-status { margin: 24px 0 16px; font-size: 12px; font-weight: 500; color: #64748b; }
+.demo-workspace { display: grid; grid-template-columns: 184px minmax(0, 1fr); gap: 24px; align-items: start; }
+.demo-steps { list-style: none; padding: 0; display: grid; gap: 4px; font-size: 12px; line-height: 1.8; color: #64748b; font-weight: 400; }
+.demo-steps li { display: flex; gap: 10px; padding: 10px 8px; border-left: 2px solid transparent; }
+.step-number { color: #64748b; font-variant-numeric: tabular-nums; }
+.demo-steps .is-current { border-color: #6366f1; color: #3730a3; background: #e0e7ff; font-weight: 600; }
+.demo-steps .is-complete .step-number { color: #4f46e5; }
+.step-detail { min-width: 0; min-height: 320px; padding: 24px; background: #f8fcff; border: 1px solid #e0e7ff; border-radius: 8px; }
+.demo-page h2 { font-size: 19px; line-height: 1.5; font-weight: 600; color: #334155; }
+.step-detail p, .demo-result li, .step-detail li { margin-top: 16px; font-size: 14px; line-height: 1.9; color: #475569; font-weight: 400; }
+.step-detail h3 { font-size: 12px; font-weight: 600; color: #64748b; margin: 24px 0 8px; }
+.tool-name { font-size: 14px; font-weight: 500; color: #3730a3; }
+.step-detail pre, .note-body pre { margin: 0; padding: 16px; background: #eaf2fc; border-radius: 4px; font-size: 12px; line-height: 1.8; font-weight: 400; color: #334155; white-space: pre-wrap; overflow-wrap: anywhere; }
+.step-detail ol, .demo-result ol { padding-left: 22px; }
+.demo-result { margin-top: 32px; padding: 24px; border-left: 2px solid #6366f1; background: #e0e7ff; }
+.demo-result a { display: block; width: fit-content; font-size: 12px; color: #4f46e5; }
+.demo-source-section { margin-top: 48px; }
+.demo-source-section > p { margin: 12px 0 20px; font-size: 13px; line-height: 1.8; font-weight: 400; color: #64748b; }
+#demo-sources details { padding: 16px 0; border-top: 1px solid #e0e7ff; }
+#demo-sources summary, .note-toc summary { font-size: 14px; font-weight: 500; color: #475569; cursor: pointer; }
+#demo-sources details p { margin-top: 16px; font-size: 14px; font-weight: 400; line-height: 1.9; color: #475569; }
+.notes-list { list-style: none; padding: 0; margin: 40px 0; }
+.notes-list li { border-top: 1px solid #e0e7ff; padding: 24px 0; font-size: 14px; font-weight: 400; color: #64748b; line-height: 1.8; }
+.notes-list li > a { font-size: 20px; font-weight: 600; color: #475569; }
+.notes-list li > p:last-child { margin-top: 12px; }
+.note-toc { margin-top: 32px; padding: 16px 0; border-top: 1px solid #e0e7ff; border-bottom: 1px solid #e0e7ff; }
+.note-toc ol { margin: 16px 0 4px; padding-left: 24px; display: grid; gap: 12px; font-size: 13px; font-weight: 400; line-height: 1.8; }
+.note-toc a { color: #475569; }
+.note-body { overflow-wrap: anywhere; }
+.note-body h2, .note-body h3, .note-body h4 { scroll-margin-top: 24px; font-weight: 600; color: #334155; }
+.note-body h2 { margin: 48px 0 20px; font-size: 22px; }
+.note-body h3 { margin: 32px 0 16px; font-size: 19px; }
+.note-body ul, .note-body ol { padding-left: 24px; margin: 20px 0; }
+.note-body li + li { margin-top: 12px; }
+.note-body p { margin: 20px 0; }
+.note-body code { font-size: .86em; color: #3730a3; }
+.note-body pre code { color: inherit; font-size: inherit; }
+.note-body blockquote { margin: 24px 0; padding-left: 20px; border-left: 2px solid #c7d2fe; }
+@media (max-width: 1023px) {
+  .demo-page, .notes-page { width: auto; margin: 24px 16px 64px; }
+  .demo-page h1, .notes-page h1 { font-size: 26px; }
+}
+@media (max-width: 600px) {
+  .demo-controls { position: sticky; top: 0; z-index: 2; padding: 12px 0; background: #f0f9ff; }
+  .demo-workspace { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .demo-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .demo-steps li { padding: 8px 6px; }
+  .step-detail { padding: 20px 16px; min-height: 240px; }
+  .demo-result { padding: 20px 16px; }
+  .note-body h2 { font-size: 20px; }
+}

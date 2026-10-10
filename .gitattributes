@@ -1,1 +1,2 @@
-* text=auto eol=lf
+# Keep imported Markdown source byte-for-byte, including original line endings.
+notes/*.md -text whitespace=cr-at-eol,-blank-at-eof

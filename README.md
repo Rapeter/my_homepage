@@ -23,7 +23,7 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `posts/collection.json`：文章 slug 与标签。
 - `lab/agent/index.html`：Agent 工具调用过程演示。
 - `assets/agent-demo.js`：演示数据、步骤切换和来源展开。
-- `assets/about-contact.js`、`assets/wechat-qr.jpg`：About 联系图标的二维码交互与图片。
+- `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
 - `notes/*.md`：笔记原文。
 - `notes/collection.json`：笔记标题、状态和更新日期。
 - `notes/index.html`、`notes/*/index.html`：生成的笔记目录及阅读页。

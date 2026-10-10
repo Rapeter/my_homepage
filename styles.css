@@ -84,14 +84,19 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .reading-page .about-heading { font-size: 30px; font-weight: 600; line-height: 1.375; letter-spacing: -.4px; color: #475569; }
 .about-page .prose { font-family: Georgia, "Songti SC", "SimSun", serif; font-size: 20px; line-height: 1.9; margin-top: 40px; }
 .about-page .prose a { overflow-wrap: anywhere; }
-.contact-links { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding: 4px; margin-top: 64px; background: #e0e7ff; border-radius: 8px; font-family: ui-sans-serif, system-ui, sans-serif; }
+.contact-links { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; padding: 4px; margin-top: 64px; background: #e0e7ff; border-radius: 8px; font-family: ui-sans-serif, system-ui, sans-serif; }
 .contact-links .contact-label { display: flex; flex-direction: column; justify-content: center; padding: 16px; }
 .contact-label h2 { font-size: 14px; font-weight: 600; color: #475569; margin: 0; }
 .contact-label p { font-size: 12px; line-height: 1.5; color: #94a3b8; margin: 0; }
-.contact-links a { border: 0; border-radius: 4px; min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; padding: 20px 8px; background: #f0f9ff; color: #4f46e5; }
-.contact-links a:hover { color: #db2777; }
-.contact-links strong { font-size: 15px; font-weight: 600; }
-.contact-links span { font-size: 11px; line-height: 1.5; color: #64748b; text-align: center; overflow-wrap: anywhere; }
+.contact-links > a, .wechat-toggle { border: 0; border-radius: 4px; min-width: 0; display: flex; justify-content: center; align-items: center; padding: 24px 8px; background: #f0f9ff; color: #4f46e5; }
+.contact-links > a:hover, .wechat-toggle:hover { color: #3730a3; background: #eef2ff; }
+.wechat-contact { position: relative; min-width: 0; display: flex; }
+.wechat-toggle { width: 100%; cursor: pointer; }
+.wechat-toggle:focus-visible { outline: 2px solid #6366f1; outline-offset: 4px; }
+.wechat-popup { position: absolute; right: 0; bottom: 100%; width: min(264px, calc(100vw - 40px)); padding-bottom: 12px; z-index: 5; }
+.wechat-qr-card { padding: 12px; border: 1px solid #e0e7ff; border-radius: 8px; background: white; box-shadow: 0 8px 24px rgb(30 41 59 / 12%); }
+.wechat-qr-card a { display: block; border: 0; }
+.wechat-qr-card img { display: block; width: 100%; height: auto; }
 .back-link { margin-top: 44px; font-size: 14px; font-weight: 500; }
 .skip-link { position: fixed; top: 8px; left: 8px; z-index: 10; padding: 10px; background: white; transform: translateY(-160%); }
 .skip-link:focus { transform: none; }
@@ -105,7 +110,7 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   .about-page .prose { font-size: 18px; }
 }
 @media (max-width: 540px) {
-  .contact-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact-links { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   .contact-links .contact-label { grid-column: 1 / -1; }
 }
 

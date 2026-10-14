@@ -58,9 +58,6 @@
   z-index: 2;
   background: linear-gradient(180deg, rgb(8 19 35 / 78%), transparent 37%, transparent 62%, rgb(8 19 35 / 60%));
 }
-.profile-identity { position: absolute; z-index: 3; top: 26px; left: 16px; right: 16px; text-align: center; color: #f0f9ff; text-shadow: 0 2px 12px rgb(0 0 0 / 45%); }
-.profile-identity h2 { margin: 0; font-size: 38px; font-weight: 650; line-height: 1.15; letter-spacing: -.9px; }
-.profile-identity p { margin-top: 8px; font-size: 13px; line-height: 1.5; font-weight: 500; color: #e4effa; }
 .profile-card-footer {
   position: absolute;
   z-index: 4;

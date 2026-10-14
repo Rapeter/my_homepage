@@ -6,7 +6,7 @@
 
 用户选定 [React Bits Profile Card](https://reactbits.dev/components/profile-card) 后，将原渐变横幅替换为竖版个人卡片与简洁自我介绍。保留浅蓝背景、文章列表、侧栏、Notes 与微信二维码。
 
-- 复用用户的原始头像；显示 Zhong、@Rapeter、AI 应用开发学习中及正在学习 Agent，没有虚构在线状态或职业。
+- 复用用户的原始头像；按用户要求去掉卡片顶部姓名与学习介绍，底部保留 @Rapeter、正在学习 Agent 及联系方式，没有虚构在线状态或职业。
 - 原生 HTML/CSS/JavaScript 适配倾斜、全息纹理、光点跟随与邮件联系；未引入 React。
 - 鼠标移出、触摸结束或取消后复位；支持键盘方向键与 Esc，尊重减少动态效果设置，静止时停止动画循环。
 - 手机保留正常纵向滚动，无 JavaScript 时仍可查看信息和使用联系方式。

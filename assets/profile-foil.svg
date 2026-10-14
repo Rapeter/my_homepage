@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="68" height="68" viewBox="0 0 68 68">
+  <g fill="white">
+    <path d="M17 8l2.5 6.5L26 17l-6.5 2.5L17 26l-2.5-6.5L8 17l6.5-2.5zM51 42l2.5 6.5L60 51l-6.5 2.5L51 60l-2.5-6.5L42 51l6.5-2.5z"/>
+    <path d="M51 12l5 5-5 5-5-5zM17 46l5 5-5 5-5-5z" opacity=".55"/>
+    <circle cx="34" cy="34" r="1.5" opacity=".65"/>
+  </g>
+</svg>

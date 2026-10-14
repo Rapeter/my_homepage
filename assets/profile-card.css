@@ -1,0 +1,99 @@
+/* Adapted for this static website from React Bits Profile Card by David Haz.
+   Reference: https://reactbits.dev/components/profile-card
+   License: profile-card.LICENSE.txt (MIT + Commons Clause). */
+.profile-card {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --light-x: 50%;
+  --light-y: 50%;
+  --foil-x: 50%;
+  --foil-y: 50%;
+  --card-light: 0;
+  width: 100%;
+  max-width: 310px;
+  aspect-ratio: .718;
+  position: relative;
+  perspective: 1000px;
+  touch-action: pan-y pinch-zoom;
+  border-radius: 28px;
+  -webkit-tap-highlight-color: transparent;
+}
+.profile-card:focus-visible { outline: 2px solid #4c87b6; outline-offset: 8px; }
+.profile-card-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  overflow: hidden;
+  isolation: isolate;
+  background: #182b44;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  box-shadow: 0 16px 40px -18px rgb(31 65 99 / 48%), inset 0 0 0 1px rgb(255 255 255 / 32%);
+}
+.profile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% center;
+  filter: saturate(.8) brightness(.88);
+  user-select: none;
+}
+.profile-foil, .profile-glare, .profile-scrim { position: absolute; inset: 0; pointer-events: none; border-radius: inherit; }
+.profile-foil {
+  z-index: 1;
+  background-image:
+    repeating-linear-gradient(0deg, #b4e9fc 5%, #b6c9ff 10%, #d1c4fa 15%, #c4e6e5 20%, #b4e9fc 25%),
+    repeating-linear-gradient(125deg, #0c1c32 0%, #7b9fa9 3%, #e4f6ff 4%, #7b9fa9 5%, #0c1c32 10%, #0c1c32 12%);
+  background-size: 400% 400%, 250% 250%;
+  background-position: var(--foil-x) var(--foil-y), var(--light-x) var(--light-y);
+  background-blend-mode: color, hard-light;
+  mix-blend-mode: color-dodge;
+  mask-image: url('./profile-foil.svg');
+  mask-size: 68px 68px;
+  opacity: calc(.12 + var(--card-light) * .6);
+}
+.profile-scrim {
+  z-index: 2;
+  background: linear-gradient(180deg, rgb(8 19 35 / 78%), transparent 37%, transparent 62%, rgb(8 19 35 / 60%));
+}
+.profile-identity { position: absolute; z-index: 3; top: 26px; left: 16px; right: 16px; text-align: center; color: #f0f9ff; text-shadow: 0 2px 12px rgb(0 0 0 / 45%); }
+.profile-identity h2 { margin: 0; font-size: 38px; font-weight: 650; line-height: 1.15; letter-spacing: -.9px; }
+.profile-identity p { margin-top: 8px; font-size: 13px; line-height: 1.5; font-weight: 500; color: #e4effa; }
+.profile-card-footer {
+  position: absolute;
+  z-index: 4;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgb(217 236 251 / 25%);
+  border-radius: 17px;
+  background: rgb(12 28 46 / 82%);
+  backdrop-filter: blur(16px);
+  color: #eff8ff;
+}
+.profile-card-footer > img { flex: 0 0 auto; width: 34px; height: 34px; object-fit: cover; object-position: 62% 25%; border-radius: 50%; border: 1px solid rgb(255 255 255 / 28%); }
+.profile-card-meta { display: grid; gap: 3px; flex: 1; min-width: 0; font-size: 13px; line-height: 1.4; font-weight: 500; }
+.profile-card-meta span + span { font-size: 11px; font-weight: 400; color: #c8deef; }
+.profile-contact { flex: 0 0 auto; padding: 9px 11px; border: 1px solid rgb(205 232 253 / 45%); border-radius: 9px; background: #d9edfc; color: #173f60; font-size: 12px; line-height: 1.5; font-weight: 600; text-shadow: none; }
+.profile-contact:hover { background: #ecf7ff; color: #102f49; }
+.profile-contact:focus-visible { outline-color: #f0f9ff; outline-offset: 4px; }
+.profile-glare {
+  z-index: 5;
+  background: radial-gradient(farthest-corner circle at var(--light-x) var(--light-y), rgb(222 246 255 / 55%), rgb(168 214 250 / 7%) 45%, transparent 80%);
+  mix-blend-mode: screen;
+  opacity: calc(var(--card-light) * .5);
+  box-shadow: inset 0 0 0 1px rgb(232 247 255 / 35%);
+}
+@media (max-width: 700px) {
+  .profile-card { width: calc(100% - 24px); max-width: 300px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .profile-card-body { transform: none; }
+  .profile-glare { opacity: 0; }
+}

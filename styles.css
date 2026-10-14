@@ -18,26 +18,20 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .site-layout { max-width: 1600px; margin: 0 auto; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); min-height: 100vh; }
 .main-column { grid-column: span 4; min-width: 0; }
 
-/* Measured from the reference: 48px inset and a 320px introduction. */
+/* A quiet introduction around the interactive portrait card. */
 .intro-banner {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  margin: 48px;
-  min-height: 320px;
-  border-radius: 8px;
-  background: linear-gradient(to bottom right, #312e81, #581c87, #be185d);
-  display: flex;
+  margin: 48px 64px 56px;
+  display: grid;
+  grid-template-columns: minmax(240px, 310px) minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 64px);
   align-items: center;
-  justify-content: flex-end;
-  padding: 48px 64px 48px 96px;
 }
-.banner-avatar { position: absolute; z-index: -1; left: 0; bottom: 0; width: 44%; height: 110%; object-fit: cover; object-position: 60% 25%; mask-image: linear-gradient(to right, #000 70%, transparent); }
-.banner-copy { position: relative; margin-left: 160px; text-align: right; font-size: 24px; font-weight: 600; line-height: 32px; color: white; }
-.banner-copy h1 { font: inherit; }
-.banner-copy a { color: white; background: rgb(147 51 234 / 75%); border: 0; border-radius: 4px; padding: 4px 8px; box-decoration-break: clone; -webkit-box-decoration-break: clone; }
-.banner-copy a:hover { background: rgb(244 114 182 / 25%); }
-.banner-copy p { margin-top: 24px; }
+.banner-copy { color: #475569; font-size: 17px; font-weight: 400; line-height: 1.8; }
+.banner-copy h1 { color: #1e293b; font-size: clamp(32px, 3.3vw, 48px); font-weight: 650; letter-spacing: -1.2px; line-height: 1.35; margin-bottom: 24px; }
+.banner-copy p + p { margin-top: 4px; }
+.banner-copy .intro-about { display: inline-block; margin-top: 24px; font-size: 14px; color: #4f6f91; border-color: #c6dced; }
+.banner-copy .intro-about:hover { color: #1e4971; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 .archive { margin: 0 64px 64px; }
 .year-group { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); }
@@ -63,16 +57,20 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 /* The reference places the profile below the articles on smaller screens. */
 @media (max-width: 1023px) {
   .site-layout { display: block; }
-  .intro-banner { margin: 16px; min-height: 192px; padding: 24px 16px 24px 144px; }
-  .banner-avatar { width: 44%; height: 100%; object-position: 65% 25%; }
-  .banner-copy { margin-left: 0; font-size: 14px; line-height: 20px; }
-  .banner-copy a { padding: 0 4px; }
+  .intro-banner { margin: 32px 24px 48px; }
   .archive { margin: 0 16px 64px; }
   .year-group { display: block; }
   .archive-year { margin-bottom: 8px; }
   .post-list { padding-top: 2px; }
   .sidebar-inner { position: static; margin: 64px 16px; max-width: 440px; }
   .social-links .wechat-popup { left: 0; right: auto; }
+}
+
+@media (max-width: 700px) {
+  .intro-banner { grid-template-columns: minmax(0, 1fr); justify-items: center; gap: 32px; margin: 32px 16px 48px; }
+  .banner-copy { text-align: center; font-size: 15px; }
+  .banner-copy h1 { font-size: 30px; margin-bottom: 16px; letter-spacing: -.6px; }
+  .banner-copy .intro-about { margin-top: 16px; }
 }
 
 /* Reading pages use the same quiet sidebar and ordinary text links. */

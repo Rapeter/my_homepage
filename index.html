@@ -8,17 +8,35 @@
     <title>Zhong</title>
     <link rel="icon" href="./assets/favicon-avatar.ico" type="image/x-icon" />
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./assets/profile-card.css" />
     <script type="module" src="./assets/about-contact.js"></script>
+    <script type="module" src="./assets/profile-card.js"></script>
   </head>
   <body>
     <a class="skip-link" href="#content">跳到正文</a>
     <div class="site-layout">
       <main id="content" class="main-column" tabindex="-1">
         <header class="intro-banner">
-          <img class="banner-avatar" src="./assets/avatar.jpg" alt="Zhong 的头像" width="1080" height="1080" fetchpriority="high" />
+          <div class="profile-card" data-profile-card role="region" aria-label="Zhong 的个人卡片" aria-describedby="profile-card-help" tabindex="0">
+            <div class="profile-card-body">
+              <img class="profile-photo" src="./assets/avatar.jpg" alt="Zhong 的头像" width="1080" height="1080" fetchpriority="high" draggable="false" />
+              <div class="profile-foil" aria-hidden="true"></div>
+              <div class="profile-scrim" aria-hidden="true"></div>
+              <div class="profile-identity"><h2>Zhong</h2><p>AI 应用开发学习中</p></div>
+              <div class="profile-card-footer">
+                <img src="./assets/avatar.jpg" alt="" width="40" height="40" draggable="false" />
+                <div class="profile-card-meta"><span>@Rapeter</span><span>正在学习 Agent</span></div>
+                <a class="profile-contact" href="mailto:kaizhong.wang@student.unimelb.edu.au">联系我</a>
+              </div>
+              <div class="profile-glare" aria-hidden="true"></div>
+            </div>
+          </div>
+          <span id="profile-card-help" class="visually-hidden">使用方向键倾斜卡片，按 Esc 复位。也可以直接使用卡片上的联系链接。</span>
           <div class="banner-copy">
-            <h1>Zhong 是一个正在学习 <a href="./about/">AI 应用开发</a>的学生。</h1>
+            <h1>你好，我是 Zhong。</h1>
+            <p>一个正在学习 AI 应用开发的学生。</p>
             <p>这里记录我正在做的事。</p>
+            <a class="intro-about" href="./about/">更多关于我</a>
           </div>
         </header>
 

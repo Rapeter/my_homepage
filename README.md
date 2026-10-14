@@ -23,6 +23,8 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `posts/collection.json`：文章 slug 与标签。
 - `lab/agent/index.html`：Agent 工具调用过程演示。
 - `assets/agent-demo.js`：演示数据、步骤切换和来源展开。
+- `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
+- `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
 - `notes/*.md`：笔记原文。
 - `notes/collection.json`：笔记标题、状态和更新日期。
@@ -37,7 +39,13 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `tests/`：构建检查。
 - `dist/`：构建产物，不提交到 Git。
 
-页面内容直接在对应 HTML 文件中编辑，样式统一在 `styles.css` 中修改。
+页面内容直接在对应 HTML 文件中编辑；全站布局在 `styles.css`，首页个人卡片的独立样式在 `assets/profile-card.css`。
+
+## 首页个人卡片
+
+卡片内容在 `index.html` 的 `data-profile-card` 区域编辑，复用 `assets/avatar.jpg`。鼠标移动或触摸卡片会改变倾斜角度与反光；移出或松开后复位。键盘聚焦后可用方向键倾斜，Esc 复位。尊重系统减少动态效果设置，停留不动时停止动画循环，不申请设备方向权限；关闭 JavaScript 后仍可查看卡片和使用邮件链接。
+
+卡片参考 [React Bits Profile Card](https://reactbits.dev/components/profile-card)，适配为原生 HTML/CSS/JavaScript，未引入 React 或构建依赖。上游署名与许可证保留在 `assets/profile-card.LICENSE.txt`，会随静态资源一起发布。
 
 ## 更新笔记
 

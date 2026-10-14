@@ -1,6 +1,19 @@
-# 当前实现：Zach Holman 首页布局复刻
+# 设计来源与实现记录
 
-用户最新要求取代先前的卡片式主页及数字分身需求：先复刻参考页，功能以后再加。
+网站最初参考 Zach Holman 的首页与 About 排版，后续按用户选择逐步加入独立实验、笔记及个人卡片。
+
+## 2026-10-14：首页个人卡片
+
+用户选定 [React Bits Profile Card](https://reactbits.dev/components/profile-card) 后，将原渐变横幅替换为竖版个人卡片与简洁自我介绍。保留浅蓝背景、文章列表、侧栏、Notes 与微信二维码。
+
+- 复用用户的原始头像；显示 Zhong、@Rapeter、AI 应用开发学习中及正在学习 Agent，没有虚构在线状态或职业。
+- 原生 HTML/CSS/JavaScript 适配倾斜、全息纹理、光点跟随与邮件联系；未引入 React。
+- 鼠标移出、触摸结束或取消后复位；支持键盘方向键与 Esc，尊重减少动态效果设置，静止时停止动画循环。
+- 手机保留正常纵向滚动，无 JavaScript 时仍可查看信息和使用联系方式。
+- 上游版权与许可证随 `assets/profile-card.LICENSE.txt` 发布。
+- 实际 Edge 检查覆盖 320–1920px 共 8 个宽度，另检查鼠标、触摸、键盘、减少动态效果及无 JavaScript 情况。文章元信息、Notes、Agent 演示与微信二维码回归检查通过。
+
+以下为首次复刻时的历史记录，原横幅尺寸与呈现方式已由上述个人卡片替代。
 
 参考：[首页](https://zachholman.com/)及 [About](https://zachholman.com/about)，2026-10-09 实际浏览器核对。
 

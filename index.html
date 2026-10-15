@@ -35,11 +35,18 @@
             <h1>你好，我是 Zhong。</h1>
             <p>一个正在学习 AI 应用开发的学生。</p>
             <p>这里记录我正在做的事。</p>
-            <a class="intro-about" href="./about/">更多关于我</a>
+            <nav class="home-nav" aria-label="主要导航">
+              <a href="#articles">文章</a><a href="./notes/">Notes</a><a href="./lab/agent/">小实验</a><a href="./about/">关于我</a>
+            </nav>
           </div>
         </header>
 
-        <section class="archive" aria-label="文章列表">
+        <section class="home-updates" aria-label="最近更新">
+          <!-- latest-note --><p data-latest-note><span class="update-label">最新笔记</span><a href="./notes/agent-interview/">Agent 八股</a><time datetime="2026-10-10">2026-10-10</time></p><!-- /latest-note -->
+          <p class="listening-note"><span class="update-label">最近在听</span><span>刘聪 KEY.L</span></p>
+        </section>
+
+        <section id="articles" class="archive" aria-label="文章列表">
           <div class="year-group">
             <h2 class="archive-year">2026</h2>
             <ol class="post-list">

@@ -22,9 +22,11 @@ const clock = icon('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>');
 const document = icon('<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/>');
 const tagIcon = icon('<path d="M20 13l-7 7a2 2 0 0 1-3 0l-8-8V3h9l9 7a2 2 0 0 1 0 3Z"/><circle cx="7.5" cy="7.5" r="1"/>');
 
-export function renderContentMeta(html, tags = [], { date, dateLabel = '' } = {}) {
+export function renderContentMeta(html, tags = [], { date, dateLabel = '', tagBase = '' } = {}) {
   const { words, minutes } = contentStats(html);
   const dateItem = date ? `<span class="meta-item">${calendar}<span>${escapeHtml(dateLabel)}<time datetime="${escapeHtml(date)}">${escapeHtml(date)}</time></span></span>` : '';
-  const tagItems = tags.map(tag => `<span class="content-tag">${escapeHtml(tag)}</span>`).join('');
+  const tagItems = tags.map(tag => tagBase
+    ? `<a class="content-tag" href="${escapeHtml(tagBase)}?tag=${escapeHtml(encodeURIComponent(tag))}">${escapeHtml(tag)}</a>`
+    : `<span class="content-tag">${escapeHtml(tag)}</span>`).join('');
   return `<div class="content-meta" aria-label="文章信息">${dateItem}<span class="meta-item">${clock}<span>约 ${minutes} 分钟</span></span><span class="meta-item" title="汉字逐字、英文按词统计；仅计算正文">${document}<span>${words.toLocaleString('zh-CN')} 字</span></span>${tags.length ? `<span class="meta-item meta-tags">${tagIcon}<span class="tag-list">${tagItems}</span></span>` : ''}</div>`;
 }

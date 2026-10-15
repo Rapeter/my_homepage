@@ -22,3 +22,11 @@ test('renders readable metadata and escapes author-supplied tags', () => {
   assert.match(html, /&lt;script&gt;/);
   assert.doesNotMatch(html, /<script>/);
 });
+
+test('note tags encode query strings and escape labels without changing plain article tags', () => {
+  const tag = '中文 & "Agent"';
+  const linked = renderContentMeta('正文', [tag], { tagBase: '../' });
+  assert.ok(linked.includes(`href="../?tag=${encodeURIComponent(tag)}"`));
+  assert.match(linked, /中文 &amp; &quot;Agent&quot;/);
+  assert.match(renderContentMeta('正文', [tag]), /<span class="content-tag">/);
+});

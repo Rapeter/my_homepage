@@ -22,7 +22,9 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `posts/*/index.html`：文章页面。
 - `posts/collection.json`：文章 slug 与标签。
 - `lab/agent/index.html`：Agent 工具调用过程演示。
-- `assets/agent-demo.js`：演示数据、步骤切换和来源展开。
+- `assets/agent-demo.js`：情境选择、步骤切换和来源展开。
+- `assets/agent-scenarios.js`：正常完成、超时重试、步数耗尽的预设步骤与对应结果。
+- `assets/notes.js`：标签筛选、目录当前位置和本地阅读位置保存。
 - `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
 - `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
@@ -41,6 +43,8 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 
 页面内容直接在对应 HTML 文件中编辑；全站布局在 `styles.css`，首页个人卡片的独立样式在 `assets/profile-card.css`。
 
+首页介绍下方的四个导航链接与 `listening-note`（最近在听）在 `index.html` 编辑。`latest-note` 注释之间的最新笔记由 `npm run notes` 按 `updated` 日期自动更新，请保留该标记。
+
 ## 首页个人卡片
 
 卡片内容在 `index.html` 的 `data-profile-card` 区域编辑，复用 `assets/avatar.jpg`。鼠标移动或触摸卡片会改变倾斜角度与反光；移出或松开后复位。键盘聚焦后可用方向键倾斜，Esc 复位。尊重系统减少动态效果设置，停留不动时停止动画循环，不申请设备方向权限；关闭 JavaScript 后仍可查看卡片和使用邮件链接。
@@ -58,6 +62,12 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 新增笔记时，在 `notes/` 创建一个 Markdown 文件，并在 `collection.json` 增加条目；`slug` 应与文件名一致，使用小写字母、数字及连字符。
 
 Markdown 支持标题、段落、列表、粗体、斜体、行内代码、代码块、引用和链接；`**Q数字…**` 独立行会生成题目标题和目录锚点。原始 HTML 按文字显示。
+
+Notes 列表按 `tags` 生成筛选按钮，选中标签保存在 URL 的 `?tag=` 参数中，可以复制链接或通过浏览器前进、后退切换。详情页目录标记当前章节；阅读位置按页面路径保存在浏览器 `localStorage`，再次打开时点击「继续阅读」恢复，不跨设备同步。带章节锚点的链接优先定位到指定章节。存储不可用或关闭 JavaScript 时，正文和目录链接仍可阅读。
+
+## Agent 演示
+
+所有情境在浏览器本地回放预设数据，不调用模型或真实工具。`assets/agent-scenarios.js` 中维护步骤、工具输入输出、策略说明和结果；`assets/agent-demo.js` 负责界面。切换情境会重置进度。步数耗尽情境仅展示已读取资料的部分结果，并标注未完成。
 
 ## 文章元信息
 

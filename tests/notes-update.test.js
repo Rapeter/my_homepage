@@ -20,7 +20,7 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     generate();
     assert.match(await readFile(join(workspace, 'notes', 'first', 'index.html'), 'utf8'), /原版内容/);
     await writeFile(join(workspace, 'notes', 'first.md'), '**Q1：改题**\n更新后的内容');
-    entries.push({ ...entries[0], slug: 'second', title: '第二篇' });
+    entries.push({ ...entries[0], slug: 'second', title: '第二篇', updated: '2026-10-11' });
     await writeFile(join(workspace, 'notes', 'collection.json'), JSON.stringify(entries));
     await writeFile(join(workspace, 'notes', 'second.md'), '# 新笔记\n新的正文');
     generate();
@@ -34,6 +34,18 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     assert.doesNotMatch(updated, /原版内容/);
     assert.match(await readFile(join(workspace, 'notes', 'index.html'), 'utf8'), /第一篇[\s\S]*第二篇/);
     assert.match(await readFile(join(workspace, 'notes', 'second', 'index.html'), 'utf8'), /新的正文/);
+    assert.match(directory, /data-note-filter="Agent"/);
+    assert.match(directory, /data-note-tags=/);
+    assert.match(updated, /assets\/notes.js/);
+    assert.match(updated, /data-resume-reading/);
+    const home = await readFile(join(workspace, 'index.html'), 'utf8');
+    assert.match(home, /data-latest-note[\s\S]*?notes\/second\/[\s\S]*?第二篇/);
+    generate();
+    assert.equal(await readFile(join(workspace, 'index.html'), 'utf8'), home, 'generation must be idempotent');
+    await writeFile(join(workspace, 'notes', 'collection.json'), '[]');
+    generate();
+    const emptyHome = await readFile(join(workspace, 'index.html'), 'utf8');
+    assert.doesNotMatch(emptyHome, /notes\/second\//, 'empty collection must clear stale latest entry');
   } finally {
     if (dirname(workspace) !== resolve(tmpdir()) || !basename(workspace).startsWith('homepage-notes-')) throw new Error('Invalid temporary test directory');
     await rm(workspace, { recursive: true, force: true });

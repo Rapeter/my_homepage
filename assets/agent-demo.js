@@ -1,17 +1,4 @@
-// All events and results are preset examples, replayed locally without a model.
-const notes = [
-  { id: 'agent-loop', title: '执行循环', content: '一次执行循环包含：接收任务、选择动作、执行工具、读取返回结果，再判断是否需要继续。把当前步骤和已完成结果保存在任务状态里，并设置明确的完成条件和最大步数。' },
-  { id: 'tool-calls', title: '工具调用', content: '工具是有明确输入和输出的函数。模型可以提出工具名称与参数，由程序校验并执行，再将结果交回下一轮。搜索返回笔记标识，读取工具根据标识取得正文；仅看到搜索标题，还不足以整理正文。' },
-  { id: 'context', title: '上下文与停止条件', content: '每一步只装入当前任务需要的指令、任务状态、工具定义与证据。笔记和工具返回值作为资料处理。整理结果时保留来源；任务达到完成条件或用完步数预算时停止。' },
-];
-const toolStep = (title, description, name, input, output) => ({ title, description, tool: { name, input, output } });
-const steps = [
-  { title: '接收任务', description: '目标：从示例笔记整理一份 Agent 工程学习清单。完成条件：覆盖执行循环、工具调用和上下文，每一项都能找到对应来源。' },
-  toolStep('搜索笔记', '先找到可能相关的笔记，取得标识与标题。搜索结果用于选择接下来需要读取的资料。', 'search_notes', { query: 'Agent 执行循环 工具调用 上下文', limit: 3 }, notes.map(({ id, title }) => ({ id, title }))),
-  ...notes.map(note => toolStep(`读取：${note.title}`, '根据搜索返回的标识读取正文，将这份工具结果加入本次任务的资料。', 'read_note', { id: note.id }, note)),
-  { title: '整理学习清单', description: '把三份笔记分别整理为可实践的学习项，保留来源标识。此步骤展示预先写好的整理结果。', draft: ['画出执行循环，记录每一步的任务状态。', '定义搜索与读取工具的输入输出，区分检索结果和正文。', '按需组织上下文，为结果保留来源，并设置停止条件。'] },
-  { title: '完成', description: '三项学习内容都有对应笔记，达到这个案例的完成条件，演示结束。你可以点开来源核对原文，也可以回看前面的工具调用。' },
-];
+import {notes, getScenario} from './agent-scenarios.js';
 
 const root = document.querySelector('[data-agent-demo]');
 if (root) {
@@ -23,31 +10,58 @@ if (root) {
   const list = root.querySelector('#demo-steps');
   const detail = root.querySelector('#step-detail');
   const result = root.querySelector('#demo-result');
-  let current = -1;
+  const select = root.querySelector('#demo-scenario');
+  const policy = root.querySelector('#demo-policy');
+  let current = -1, scenario, rows;
   const element = (tag, text, className) => {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
     if (className) node.className = className;
     return node;
   };
-  const rows = steps.map((step, index) => {
-    const row = element('li');
-    row.append(element('span', String(index + 1).padStart(2, '0'), 'step-number'), element('span', step.title));
-    list.append(row);
-    return row;
-  });
   for (const note of notes) {
-    const source = document.createElement('details');
+    const source = element('details');
     source.id = `source-${note.id}`;
     source.append(element('summary', note.title), element('p', note.content));
     root.querySelector('#demo-sources').append(source);
   }
+  function chooseScenario() {
+    scenario = getScenario(select.value);
+    policy.textContent = scenario.policy;
+    list.replaceChildren();
+    rows = scenario.steps.map((step, index) => {
+      const row = element('li');
+      row.append(element('span', String(index + 1).padStart(2, '0'), 'step-number'), element('span', step.title));
+      list.append(row);
+      return row;
+    });
+    current = -1;
+    root.querySelectorAll('#demo-sources details').forEach(source => { source.open = false; });
+    result.replaceChildren();
+    render();
+  }
+  function renderResult() {
+    result.replaceChildren();
+    const heading = element('h2', scenario.result.title); heading.id = 'result-heading';
+    result.append(heading, element('p', scenario.result.summary));
+    const items = element('ol');
+    scenario.result.items.forEach(item => {
+      const row = element('li', item.text);
+      const link = element('a', `来源：${item.source.title}`);
+      link.href = `#source-${item.source.id}`;
+      link.dataset.source = `source-${item.source.id}`;
+      row.append(link); items.append(row);
+    });
+    result.append(items);
+  }
   function render() {
+    const steps = scenario.steps;
     start.hidden = current !== -1;
     previous.hidden = next.hidden = reset.hidden = current === -1;
     previous.disabled = current <= 0;
     next.disabled = current === steps.length - 1;
     result.hidden = current !== steps.length - 1;
+    if (!result.hidden) renderResult();
     rows.forEach((row, index) => {
       row.classList.toggle('is-current', index === current);
       row.classList.toggle('is-complete', index < current);
@@ -56,8 +70,8 @@ if (root) {
     });
     detail.replaceChildren();
     if (current === -1) {
-      status.textContent = '尚未开始 · 7 个步骤';
-      detail.append(element('h2', '看看一个任务如何完成'), element('p', '点击“开始演示”，跟随搜索、读取和整理的过程。你可以随时回到上一步。'));
+      status.textContent = `尚未开始 · ${steps.length} 个步骤`;
+      detail.append(element('h2', '看看一个任务如何完成'), element('p', '选择一种情境，点击“开始演示”。可以回看上一步，也可以随时切换情境重新开始。'));
       return;
     }
     const step = steps[current];
@@ -77,23 +91,21 @@ if (root) {
       detail.append(draft);
     }
   }
+  select.addEventListener('change', chooseScenario);
   start.addEventListener('click', () => { current = 0; render(); next.focus(); });
   previous.addEventListener('click', () => { if (current > 0) { current--; render(); } });
-  next.addEventListener('click', () => { if (current >= 0 && current < steps.length - 1) { current++; render(); } });
-  reset.addEventListener('click', () => {
-    current = -1;
-    root.querySelectorAll('#demo-sources details').forEach(source => { source.open = false; });
-    render(); start.focus();
-  });
+  next.addEventListener('click', () => { if (current >= 0 && current < scenario.steps.length - 1) { current++; render(); } });
+  reset.addEventListener('click', () => { chooseScenario(); start.focus(); });
   result.addEventListener('click', event => {
     const link = event.target.closest('a[data-source]');
     if (!link) return;
     event.preventDefault();
     const source = document.getElementById(link.dataset.source);
     source.open = true;
-    source.scrollIntoView({ block: 'center' });
-    source.querySelector('summary').focus({ preventScroll: true });
+    source.scrollIntoView({ block:'center' });
+    source.querySelector('summary').focus({ preventScroll:true });
   });
   root.querySelector('.demo-controls').hidden = false;
-  render();
+  root.querySelector('.demo-scenarios').hidden = false;
+  chooseScenario();
 }

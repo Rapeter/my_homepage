@@ -20,6 +20,11 @@
   <p class="demo-disclosure">预设演示 · 所有步骤和结果均为示例，在浏览器本地回放。</p>
   <p class="demo-task"><strong>任务 /</strong> 从示例笔记整理一份 Agent 工程学习清单，并为每一项保留来源。</p>
   <noscript><p class="page-intro">步骤切换需要启用 JavaScript。你也可以直接阅读 <a href="../../notes/agent-interview/">Agent 八股笔记</a>。</p></noscript>
+  <div class="demo-scenarios" hidden>
+    <label for="demo-scenario">选择情境</label>
+    <select id="demo-scenario"><option value="normal">正常完成</option><option value="retry">工具超时后重试</option><option value="budget">达到步数上限</option></select>
+    <p id="demo-policy" class="demo-disclosure" aria-live="polite"></p>
+  </div>
   <div class="demo-controls" hidden>
     <button id="demo-start" class="primary-control" type="button">开始演示</button>
     <button id="demo-previous" type="button" hidden>上一步</button>
@@ -32,12 +37,6 @@
     <section id="step-detail" class="step-detail" aria-label="当前步骤"><h2>看看一个任务如何完成</h2><p>点击“开始演示”，跟随搜索、读取和整理的过程。</p></section>
   </div>
   <section id="demo-result" class="demo-result" hidden aria-labelledby="result-heading">
-    <h2 id="result-heading">Agent 工程学习清单</h2>
-    <ol>
-      <li>画出执行循环，记录每一步的任务状态。<a href="#source-agent-loop" data-source="source-agent-loop">来源：执行循环</a></li>
-      <li>定义搜索与读取工具的输入输出，区分检索结果和正文。<a href="#source-tool-calls" data-source="source-tool-calls">来源：工具调用</a></li>
-      <li>按需组织上下文，为结果保留来源，并设置停止条件。<a href="#source-context" data-source="source-context">来源：上下文与停止条件</a></li>
-    </ol>
   </section>
   <section class="demo-source-section" aria-labelledby="sources-heading"><h2 id="sources-heading">示例笔记</h2><p>这三份短笔记用于演示工具的输入和输出，可随时展开核对。</p><div id="demo-sources"></div></section>
   <p class="back-link">更多学习记录：<a href="../../notes/">Notes</a> · <a href="../../">回到首页</a></p>

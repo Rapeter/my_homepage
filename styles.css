@@ -31,6 +31,16 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .banner-copy p + p { margin-top: 4px; }
 .banner-copy .intro-about { display: inline-block; margin-top: 24px; font-size: 14px; color: #4f6f91; border-color: #c6dced; }
 .banner-copy .intro-about:hover { color: #1e4971; }
+.home-nav { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 24px; font-size: 14px; }
+.home-nav a { color: #426b90; border-color: #c6dced; }
+.home-nav a:hover { color: #1e4971; }
+.home-updates { margin: 0 64px 48px; display: grid; gap: 16px; font-size: 14px; font-weight: 400; line-height: 1.8; }
+.home-updates p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.update-label { color: #64748b; min-width: 56px; font-size: 12px; }
+.home-updates a { color: #426b90; }
+.home-updates time { color: #64748b; font-size: 12px; }
+.listening-note { color: #475569; }
+#articles { scroll-margin-top: 24px; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
 
 .archive { margin: 0 64px 64px; }
@@ -59,6 +69,7 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   .site-layout { display: block; }
   .intro-banner { margin: 32px 24px 48px; }
   .archive { margin: 0 16px 64px; }
+  .home-updates { margin: 0 24px 40px; }
   .year-group { display: block; }
   .archive-year { margin-bottom: 8px; }
   .post-list { padding-top: 2px; }
@@ -71,6 +82,8 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
   .banner-copy { text-align: center; font-size: 15px; }
   .banner-copy h1 { font-size: 30px; margin-bottom: 16px; letter-spacing: -.6px; }
   .banner-copy .intro-about { margin-top: 16px; }
+  .home-nav { justify-content: center; margin-top: 20px; }
+  .home-updates { margin-inline: 16px; }
 }
 
 /* Reading pages use the same quiet sidebar and ordinary text links. */
@@ -167,6 +180,24 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .note-toc { margin-top: 32px; padding: 16px 0; border-top: 1px solid #e0e7ff; border-bottom: 1px solid #e0e7ff; }
 .note-toc ol { margin: 16px 0 4px; padding-left: 24px; display: grid; gap: 12px; font-size: 13px; font-weight: 400; line-height: 1.8; }
 .note-toc a { color: #475569; }
+.note-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.note-filters button, .resume-reading { font: inherit; font-size: 13px; font-weight: 400; line-height: 1.6; padding: 7px 12px; border: 1px solid #c6dced; border-radius: 4px; color: #426b90; background: transparent; cursor: pointer; }
+.note-filters button[aria-pressed="true"] { background: #deedf8; color: #1e4971; border-color: #81a8c6; }
+.note-filters button:focus-visible, .resume-reading:focus-visible, .demo-scenarios select:focus-visible { outline: 2px solid #4c87b6; outline-offset: 3px; }
+.filter-status { margin-top: 14px; font-size: 12px; font-weight: 400; line-height: 1.8; color: #64748b; }
+.notes-list a.content-tag { font-size: inherit; font-weight: 400; color: #426b90; }
+.resume-reading { display: block; margin-top: 24px; max-width: 100%; text-align: left; overflow-wrap: anywhere; }
+.notes-page.is-enhanced .note-toc { position: sticky; top: 0; z-index: 3; background: #f0f9ff; }
+.note-toc summary { line-height: 1.8; }
+.toc-position { display: block; min-height: 21.6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 400; color: #64748b; }
+.toc-position:empty { visibility: hidden; }
+.note-toc ol { max-height: min(220px, 30vh); overflow: auto; overscroll-behavior: contain; padding-right: 8px; }
+.note-toc a[aria-current="location"] { color: #1e4971; font-weight: 600; border-color: #81a8c6; }
+.notes-page .note-body :is(h2,h3,h4,h5,h6) { scroll-margin-top: var(--note-offset, 100px); }
+.demo-scenarios { margin-top: 28px; font-size: 13px; font-weight: 400; color: #475569; }
+.demo-scenarios label { margin-right: 12px; }
+.demo-scenarios select { max-width: 100%; font: inherit; padding: 8px 12px; border: 1px solid #c6dced; border-radius: 4px; background: #f0f9ff; color: #334155; }
+.demo-result > p { margin-top: 12px; font-size: 14px; font-weight: 400; line-height: 1.9; color: #475569; }
 .note-body { overflow-wrap: anywhere; }
 .note-body h2, .note-body h3, .note-body h4 { scroll-margin-top: 24px; font-weight: 600; color: #334155; }
 .note-body h2 { margin: 48px 0 20px; font-size: 22px; }

@@ -181,6 +181,10 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .note-toc ol { margin: 16px 0 4px; padding-left: 24px; display: grid; gap: 12px; font-size: 13px; font-weight: 400; line-height: 1.8; }
 .note-toc a { color: #475569; }
 .note-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.note-categories { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; padding-bottom: 12px; border-bottom: 1px solid #c6dced; }
+.note-categories button { padding: 4px 0; font: inherit; font-size: 15px; font-weight: 400; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #64748b; cursor: pointer; }
+.note-categories button[aria-pressed="true"] { color: #1e4971; border-bottom-color: #81a8c6; font-weight: 600; }
+.note-categories button:focus-visible { outline: 2px solid #4c87b6; outline-offset: 4px; }
 .note-filters button, .resume-reading { font: inherit; font-size: 13px; font-weight: 400; line-height: 1.6; padding: 7px 12px; border: 1px solid #c6dced; border-radius: 4px; color: #426b90; background: transparent; cursor: pointer; }
 .note-filters button[aria-pressed="true"] { background: #deedf8; color: #1e4971; border-color: #81a8c6; }
 .note-filters button:focus-visible, .resume-reading:focus-visible, .demo-scenarios select:focus-visible { outline: 2px solid #4c87b6; outline-offset: 3px; }
@@ -191,7 +195,13 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .note-toc summary { line-height: 1.8; }
 .toc-position { display: block; min-height: 21.6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 400; color: #64748b; }
 .toc-position:empty { visibility: hidden; }
-.note-toc ol { max-height: min(220px, 30vh); overflow: auto; overscroll-behavior: contain; padding-right: 8px; }
+.note-toc > ol { max-height: min(220px, 30vh); overflow: auto; overscroll-behavior: contain; padding-right: 8px; }
+.note-toc ol ol { margin: 12px 0 0; padding-left: 20px; }
+.question-link { font-size: 14px; font-weight: 400; color: #64748b; border: 0; }
+.note-table { overflow-x: auto; margin: 24px 0; }
+.note-table table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.8; }
+.note-table :is(th,td) { padding: 12px; border-bottom: 1px solid #c6dced; vertical-align: top; text-align: left; min-width: 100px; }
+.note-table th { color: #334155; font-weight: 600; }
 .note-toc a[aria-current="location"] { color: #1e4971; font-weight: 600; border-color: #81a8c6; }
 .notes-page .note-body :is(h2,h3,h4,h5,h6) { scroll-margin-top: var(--note-offset, 100px); }
 .demo-scenarios { margin-top: 28px; font-size: 13px; font-weight: 400; color: #475569; }

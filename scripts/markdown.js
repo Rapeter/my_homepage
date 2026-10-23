@@ -35,13 +35,25 @@ export function renderMarkdown(source) {
     const heading = line.match(/^(#{1,6})\s+(.+)$/);
     if (question || heading) {
       const title = question ? question[1] : heading[2];
-      const base = question ? `q${question[2]}` : title.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'section';
+      const interviewId = title.match(/^([QRF]\d+)[｜:：.\s]/i)?.[1].toLowerCase();
+      const base = question ? `q${question[2]}` : interviewId || title.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '') || 'section';
       let id = base, suffix = 2;
       while (ids.has(id)) id = `${base}-${suffix++}`;
       ids.add(id);
       const level = question ? 2 : Math.min(6, heading[1].length + 1);
       html.push(`<h${level} id="${id}">${inline(title)}</h${level}>`);
-      toc.push({ id, title }); i++; continue;
+      toc.push({ id, title, level }); i++; continue;
+    }
+    // Tables contain only escaped inline content, never raw author HTML.
+    const cells = row => row.trim().replace(/^\||\|$/g, '').split('|').map(cell => cell.trim());
+    if (line.trim().startsWith('|') && lines[i + 1]?.includes('|') && cells(lines[i + 1]).every(cell => /^:?-{3,}:?$/.test(cell))) {
+      const headers = cells(line); i += 2;
+      const rows = [];
+      while (i < lines.length && lines[i].trim().startsWith('|')) {
+        const values = cells(lines[i++]);
+        rows.push(`<tr>${headers.map((_, index) => `<td>${inline(values[index] || '')}</td>`).join('')}</tr>`);
+      }
+      html.push(`<div class="note-table"><table><thead><tr>${headers.map(cell => `<th scope="col">${inline(cell)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table></div>`); continue;
     }
     const list = line.match(/^\s*(?:([-*+])|(\d+)[.)])\s+(.+)$/);
     if (list) {

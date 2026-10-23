@@ -5,6 +5,81 @@
     "description": "我的 Agent 面试与工程学习笔记。整理中，内容会继续补充和修订。",
     "status": "整理中",
     "updated": "2026-10-10",
-    "tags": ["Agent", "面试", "工程化"]
+    "tags": [
+      "Agent",
+      "面试",
+      "工程化"
+    ]
+  },
+  {
+    "slug": "anker-ai-first",
+    "title": "安克创新 · AI 研发实习生一面",
+    "company": "安克创新",
+    "role": "AI 研发实习生",
+    "interviewDate": "2026-10-21",
+    "description": "围绕项目职责、工具权限、成本治理与业务落地的连续追问。",
+    "tags": [
+      "面试",
+      "AI研发",
+      "Agent",
+      "项目追问"
+    ],
+    "type": "interview",
+    "round": "一面",
+    "updated": "2026-10-23",
+    "status": "公开版 · 持续修订"
+  },
+  {
+    "slug": "bytedance-backend-first",
+    "title": "字节 · 后端开发实习生一面",
+    "company": "字节",
+    "role": "后端开发实习生",
+    "interviewDate": "2026-10-20",
+    "description": "从项目与 Agent 工程，延伸到系统设计、计算机基础与现场编码。",
+    "tags": [
+      "面试",
+      "后端",
+      "Agent",
+      "算法"
+    ],
+    "type": "interview",
+    "round": "一面",
+    "updated": "2026-10-23",
+    "status": "公开版 · 持续修订"
+  },
+  {
+    "slug": "drip-ai-first",
+    "title": "滴灌通 · AI 研发实习生一面",
+    "company": "滴灌通",
+    "role": "AI 研发实习生",
+    "interviewDate": "2026-10-13",
+    "description": "Agent 状态恢复、工具鉴权、项目边界与个人职责的问答记录。",
+    "tags": [
+      "面试",
+      "AI研发",
+      "Agent",
+      "权限"
+    ],
+    "type": "interview",
+    "round": "一面",
+    "updated": "2026-10-23",
+    "status": "公开版 · 持续修订"
+  },
+  {
+    "slug": "sangfor-product-first",
+    "title": "深信服 · 国际产品实习生一面",
+    "company": "深信服",
+    "role": "国际产品实习生",
+    "interviewDate": "2026-09-29",
+    "description": "需求价值判断、业务全流程、产品验收与上线后效果衡量。",
+    "tags": [
+      "面试",
+      "产品",
+      "需求分析"
+    ],
+    "type": "interview",
+    "round": "一面",
+    "updated": "2026-10-23",
+    "status": "公开版 · 持续修订"
   }
 ]

@@ -16,3 +16,19 @@ test('note content cannot introduce raw HTML or executable links', () => {
   assert.match(rendered.html, /&lt;img/);
   assert.match(rendered.html, /href="https:\/\/example.com"/);
 });
+
+test('interview questions keep stable links and nested TOC levels', () => {
+  const rendered = renderMarkdown('## 项目追问\n\n### Q01｜项目是什么？\n回答\n\n### R01｜我的反问\n内容');
+  assert.deepEqual(rendered.toc.map(({id, level}) => ({id, level})), [
+    {id:'项目追问',level:3}, {id:'q01',level:4}, {id:'r01',level:4},
+  ]);
+  assert.match(rendered.html, /id="q01"/);
+});
+
+test('comparison tables render safely rather than as pipe-delimited paragraphs', () => {
+  const rendered = renderMarkdown('| 判断 | 说明 |\n|---|---|\n| **价值** | <script> & 业务 |');
+  assert.match(rendered.html, /<table>/);
+  assert.match(rendered.html, /<th scope="col">判断<\/th>/);
+  assert.match(rendered.html, /<td><strong>价值<\/strong><\/td>/);
+  assert.match(rendered.html, /&lt;script&gt;/);
+});

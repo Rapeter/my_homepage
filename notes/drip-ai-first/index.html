@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f0f9ff" />
+    <meta name="description" content="Agent 状态恢复、工具鉴权、项目边界与个人职责的问答记录。" />
+    <title>滴灌通 · AI 研发实习生一面 · Zhong</title>
+    <link rel="icon" href="../../assets/favicon-avatar.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../styles.css" />
+    <script type="module" src="../../assets/about-contact.js"></script>
+    <script type="module" src="../../assets/notes.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">跳到正文</a>
+    <div class="site-layout">
+      <main id="content" class="main-column" tabindex="-1"><article class="reading-page notes-page" data-note-id="drip-ai-first">
+      <nav class="breadcrumbs" aria-label="位置"><a href="../../">首页</a><span aria-hidden="true">›</span><a href="../">Notes</a><span aria-hidden="true">›</span>滴灌通 · AI 研发实习生一面</nav>
+      <h1>滴灌通 · AI 研发实习生一面</h1>
+      <div class="content-meta" aria-label="文章信息"><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span>更新于 <time datetime="2026-10-23">2026-10-23</time></span></span><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>约 12 分钟</span></span><span class="meta-item" title="汉字逐字、英文按词统计；仅计算正文"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span>3,323 字</span></span><span class="meta-item meta-tags"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13l-7 7a2 2 0 0 1-3 0l-8-8V3h9l9 7a2 2 0 0 1 0 3Z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span class="tag-list"><a class="content-tag" href="../?tag=%E9%9D%A2%E8%AF%95">面试</a><a class="content-tag" href="../?tag=AI%E7%A0%94%E5%8F%91">AI研发</a><a class="content-tag" href="../?tag=Agent">Agent</a><a class="content-tag" href="../?tag=%E6%9D%83%E9%99%90">权限</a></span></span></div>
+      <p class="note-meta">面试于 <time datetime="2026-10-13">2026-10-13</time> · 公开版 · 持续修订 · <a href="../drip-ai-first.md" download>下载公开版</a></p>
+      <p class="page-intro">Agent 状态恢复、工具鉴权、项目边界与个人职责的问答记录。</p>
+      <button type="button" class="resume-reading" data-resume-reading hidden>继续阅读</button>
+      <details class="note-toc"><summary>目录 · 43 个条目<span class="toc-position" aria-hidden="true"></span></summary><ol><li><a href="#面试官的问题与我的实际回答">面试官的问题与我的实际回答</a><ol><li><a href="#q01">Q01｜当前是否在学校</a></li><li><a href="#q02">Q02｜自我介绍</a></li><li><a href="#q03">Q03｜开源项目的场景与架构</a></li><li><a href="#q04">Q04｜行情数据接入</a></li><li><a href="#q05">Q05｜深入研究与证据报告</a></li><li><a href="#q06">Q06｜Agent 运行机制</a></li><li><a href="#q07">Q07｜失败处理与重试</a></li><li><a href="#q08">Q08｜两个项目的长任务恢复对比</a></li><li><a href="#q09">Q09｜State、Checkpoint 与 Retry</a></li><li><a href="#q10">Q10｜工业企业为什么使用 AI</a></li><li><a href="#q11">Q11｜故障信息从哪里来</a></li><li><a href="#q12">Q12｜人员通过什么终端上报</a></li><li><a href="#q13">Q13｜Agent 具体读取了什么</a></li><li><a href="#q14">Q14｜Agent 部署在哪里</a></li><li><a href="#q15">Q15｜敏感数据是否外传</a></li><li><a href="#q16">Q16｜校企试点还是生产使用</a></li><li><a href="#q17">Q17｜数十个 MCP 工具如何产生</a></li><li><a href="#q18">Q18｜手写工具与具体功能</a></li><li><a href="#q19">Q19｜鉴权放在什么位置</a></li><li><a href="#q20">Q20｜凭证是不是明文</a></li><li><a href="#q21">Q21｜三层权限链路的个人职责</a></li><li><a href="#q22">Q22｜项目时间是否久远</a></li><li><a href="#q23">Q23｜如何防止 Agent 越权</a></li><li><a href="#q24">Q24｜HTTPS 反向代理问题如何发现</a></li><li><a href="#q25">Q25｜方案由谁解决</a></li><li><a href="#q26">Q26｜两段企业项目是否同一背景</a></li><li><a href="#q27">Q27｜独立应用还是平台二开</a></li><li><a href="#q28">Q28｜前后端与数据库是否自己完成</a></li><li><a href="#q29">Q29｜工作助手到底有没有落地</a></li><li><a href="#q30">Q30｜平时使用哪些 AI 编程工具</a></li><li><a href="#q31">Q31｜最常用哪一个</a></li><li><a href="#q32">Q32｜账号由谁提供</a></li></ol></li><li><a href="#我的反问与面试官的说明">我的反问与面试官的说明</a><ol><li><a href="#r01">R01｜岗位更偏业务应用还是内部提效？</a></li><li><a href="#r02">R02｜团队怎样验收项目？</a></li></ol></li><li><a href="#到岗-经历日期与通勤">到岗、经历日期与通勤</a><ol><li><a href="#q33">Q33｜目前是否在岗位所在地</a></li><li><a href="#q34">Q34｜到岗时间</a></li><li><a href="#q35">Q35｜简历至今与当前实习状态</a></li><li><a href="#q36">Q36｜合作地点与时差</a></li><li><a href="#q37">Q37｜经历是否已结束、简历是否未更新</a></li><li><a href="#q38">Q38｜通勤位置</a></li></ol></li></ol></details>
+      <div class="prose note-body"><blockquote><p>根据本次面试记录整理，问题与回答为内容概括，并非逐字稿。正文已泛化个人、合作企业及项目识别信息，移除录屏时间戳。
+
+“我的回答”保留当时表达及不确定之处，不补写参考答案。项目指标、使用情况和个人贡献属于当场自述，未经外部核实；面试官的说明与后续学习提醒单独列出。</p></blockquote>
+<h3 id="面试官的问题与我的实际回答">面试官的问题与我的实际回答</h3>
+<h4 id="q01">Q01｜当前是否在学校 <a class="question-link" href="#q01" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你现在是在学校吗？</p>
+<p><strong>我的回答（概括）：</strong> 我说自己已经回到国内，目前不在学校。</p>
+<h4 id="q02">Q02｜自我介绍 <a class="question-link" href="#q02" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 请先简单介绍一下自己。</p>
+<p><strong>我的回答（概括）：</strong> 我介绍了海外高校计算机相关本科和信息技术硕士背景，关注 AI 应用与 Agent 工程；通过校企合作参与某工业企业的安全作业与岗位 AI 助手项目，主要做岗位任务标准化、测试记录和问题反馈；还以“自己的开源项目”介绍了 Electron、React、TypeScript 的金融研究工作台，但没有明确说明原创与贡献关系。</p>
+<h4 id="q03">Q03｜开源项目的场景与架构 <a class="question-link" href="#q03" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 这个开源项目具体是什么场景，解决什么问题？系统怎么做的？</p>
+<p><strong>我的回答（概括）：</strong> 我说它像投资 AI 助手，可以查看股票价格、K 线和比较不同公司，把能力集成到同一个界面，减少切换其他应用。</p>
+<h4 id="q04">Q04｜行情数据接入 <a class="question-link" href="#q04" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 系统的数据源是怎么集成进来的？</p>
+<p><strong>我的回答（概括）：</strong> 我回答直接接了 行情数据 CLI。</p>
+<h4 id="q05">Q05｜深入研究与证据报告 <a class="question-link" href="#q05" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 拿到数据以后，分析、深入研究和证据化报告是怎么做的？</p>
+<p><strong>我的回答（概括）：</strong> 我主要解释了 Skill 按需读取任务说明与资源，先给模型简要信息，需要时加载详细内容，从而减少无关上下文。</p>
+<h4 id="q06">Q06｜Agent 运行机制 <a class="question-link" href="#q06" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 请介绍一下 Agent 的运行机制。</p>
+<p><strong>我的回答（概括）：</strong> 我解释了一次请求执行的运行中、完成、失败、取消状态，以及 Session 保存对话历史、一个 Session 包含多次 Run。</p>
+<h4 id="q07">Q07｜失败处理与重试 <a class="question-link" href="#q07" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你们怎样管理任务状态？有没有失败重试机制？</p>
+<p><strong>我的回答（概括）：</strong> 我说失败时考虑降级，设置重试次数，超过次数后降级或提示人工介入；没有说出具体次数、错误分类或实现位置。</p>
+<h4 id="q08">Q08｜两个项目的长任务恢复对比 <a class="question-link" href="#q08" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 两个项目都涉及长任务和断点恢复，它们的技术与设计有什么共同点？</p>
+<p><strong>我的回答（概括）：</strong> 我主要回答了高风险或写操作需要人工确认、执行前检查权限，以及审计相关内容。</p>
+<h4 id="q09">Q09｜State、Checkpoint 与 Retry <a class="question-link" href="#q09" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 面试官澄清：问的是任务的 State、Checkpoint、Retry，你了解这些怎么做吗？</p>
+<p><strong>我的回答（概括）：</strong> 我说 trace 中可以看到 checkpoint，retry 是重试；随后转向保留输入版本和错误结果、定位需求/上下文/工具参数/API Key 问题，把 bad case 放入回归用例并人工复核。</p>
+<h4 id="q10">Q10｜工业企业为什么使用 AI <a class="question-link" href="#q10" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 这是一家涉及高风险生产的企业，建立 AI 应用主要想解决什么问题？</p>
+<p><strong>我的回答（概括）：</strong> 我举设备管理任务：操作人员提供设备编号和时间范围，系统查询故障与维修记录，Agent 生成设备情况摘要，帮助人员了解设备情况并在系统中留存。</p>
+<h4 id="q11">Q11｜故障信息从哪里来 <a class="question-link" href="#q11" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 故障是人工上报、系统自动上报，还是你们的功能主动巡检发现的？</p>
+<p><strong>我的回答（概括）：</strong> 我回答是当时的操作人员自行输入并告知。</p>
+<h4 id="q12">Q12｜人员通过什么终端上报 <a class="question-link" href="#q12" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 人员是通过 App 还是其他操作终端上报？</p>
+<p><strong>我的回答（概括）：</strong> 我提到了某企业协作/知识平台，类比企业协作平台；随后面试官提到了工单系统。平台品牌在转录中不够清晰。</p>
+<p><strong>转录说明：</strong> 平台名称可能涉及知识协作与工单产品；本稿统一泛化，不把自动识别结果当成已确认名称。</p>
+<h4 id="q13">Q13｜Agent 具体读取了什么 <a class="question-link" href="#q13" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 是不是人员提交工单后，Agent 读取页面或数据库数据，再汇总相关信息？</p>
+<p><strong>我的回答（概括）：</strong> 面试官概括了一条读取工单并汇总的流程，我连续表示认可，没有进一步说明数据访问方式。</p>
+<h4 id="q14">Q14｜Agent 部署在哪里 <a class="question-link" href="#q14" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> Agent 架设在哪里？是否在专门的服务器？企业是否有自己的算力和服务资源？</p>
+<p><strong>我的回答（概括）：</strong> 我回答接了某 Agent SDK 底座，没有说明部署位置。具体 SDK 名称无法可靠确认。</p>
+<p><strong>转录说明：</strong> 两轮转录均不足以确认 SDK 专有名称，保留“SDK 底座”这一可辨识意思。</p>
+<h4 id="q15">Q15｜敏感数据是否外传 <a class="question-link" href="#q15" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 从业务系统读取资料再交给 Agent，会不会涉及敏感数据外传？</p>
+<p><strong>我的回答（概括）：</strong> 我回答这是校企合作项目，要求在传递信息前进行脱敏。</p>
+<h4 id="q16">Q16｜校企试点还是生产使用 <a class="question-link" href="#q16" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 最后只是校企试点，还是已经投产、正常使用？</p>
+<p><strong>我的回答（概括）：</strong> 我说负责人告诉我已经用上了，觉得效果还可以；没有提供具体用户、验收或使用数据。</p>
+<h4 id="q17">Q17｜数十个 MCP 工具如何产生 <a class="question-link" href="#q17" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 简历提到数十个 MCP 工具，是 Agent 自动写的，还是你们写的？</p>
+<p><strong>我的回答（概括）：</strong> 我回答有自动生成的，也有自己写的，没有说明生成方法和本人比例。</p>
+<h4 id="q18">Q18｜手写工具与具体功能 <a class="question-link" href="#q18" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你们手写的主要是什么？能举几个工具功能的例子吗？</p>
+<p><strong>我的回答（概括）：</strong> 我先说规定客户端与工具、资源服务之间的交互方法；被要求举功能例子后，说接口文档可能缺少权限信息和必填关系，需要人工处理。</p>
+<h4 id="q19">Q19｜鉴权放在什么位置 <a class="question-link" href="#q19" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 鉴权是在工具里面，还是在平台上？工具也可能需要鉴权。</p>
+<p><strong>我的回答（概括）：</strong> 我回答放在工具上，没有展开。</p>
+<h4 id="q20">Q20｜凭证是不是明文 <a class="question-link" href="#q20" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 鉴权信息是明文还是非明文？</p>
+<p><strong>我的回答（概括）：</strong> 我犹豫后回答“应该不是明文”，没有说明存储、传输或调用过程。</p>
+<h4 id="q21">Q21｜三层权限链路的个人职责 <a class="question-link" href="#q21" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> Agent→工具→业务系统的三层链路，是你完整设计的，还是只参与其中某个环节？</p>
+<p><strong>我的回答（概括）：</strong> 我请面试官重复问题；再次解释后，我停顿并说“我当时就是……”，没有形成完整回答。面试官随后让我回忆，不用着急。</p>
+<h4 id="q22">Q22｜项目时间是否久远 <a class="question-link" href="#q22" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 项目是不是比较久了？</p>
+<p><strong>我的回答（概括）：</strong> 我先说虽然最近才结束，随后又说此前已经结束；具体月份已泛化。</p>
+<h4 id="q23">Q23｜如何防止 Agent 越权 <a class="question-link" href="#q23" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 如何避免 Agent 出现越权、穿透权限边界等问题？</p>
+<p><strong>我的回答（概括）：</strong> 我回答在服务端与执行端强制校验，不能只在 prompt 写禁止越权；请求绑定可信用户身份，按角色与对象范围限制动作和可见数据，工具执行前再检查参数和权限。</p>
+<h4 id="q24">Q24｜HTTPS 反向代理问题如何发现 <a class="question-link" href="#q24" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 简历里的 HTTPS 反向代理、Agent 与业务系统连通问题，是你发现的，还是别人反馈的？</p>
+<p><strong>我的回答（概括）：</strong> 我说是一线操作人员告诉我不能使用。没有进一步说出原始错误、请求路径、根因或定位过程。</p>
+<h4 id="q25">Q25｜方案由谁解决 <a class="question-link" href="#q25" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 是你自己找到方案解决，还是请公司安全专家协助？</p>
+<p><strong>我的回答（概括）：</strong> 我回答和当时一起实习的同学协作，没有明确指出谁负责哪一部分。</p>
+<h4 id="q26">Q26｜两段企业项目是否同一背景 <a class="question-link" href="#q26" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 岗位 AI 工作助手平台也是同一家企业的项目吗？</p>
+<p><strong>我的回答（概括）：</strong> 我回答是。</p>
+<h4 id="q27">Q27｜独立应用还是平台二开 <a class="question-link" href="#q27" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 工作助手平台是自己搭的应用，还是基于现有平台做二次开发？</p>
+<p><strong>我的回答（概括）：</strong> 我回答搭了一个应用出来。</p>
+<h4 id="q28">Q28｜前后端与数据库是否自己完成 <a class="question-link" href="#q28" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 前端、后端以及数据库都是你们自己搭的吗？</p>
+<p><strong>我的回答（概括）：</strong> 我回答是，没有展开技术栈、模块和个人职责。</p>
+<h4 id="q29">Q29｜工作助手到底有没有落地 <a class="question-link" href="#q29" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 这个平台现在还在正常使用，还是比赛、学校项目或试验项目？</p>
+<p><strong>我的回答（概括）：</strong> 我说更偏向学校项目，但最后有完整成果，一线操作人员确实使用过；没有说明持续使用或运维情况。</p>
+<h4 id="q30">Q30｜平时使用哪些 AI 编程工具 <a class="question-link" href="#q30" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 日常使用比较多的 AI 编程工具有哪些？</p>
+<p><strong>我的回答（概括）：</strong> 我提到 Codex、Cursor，并说当时 Claude Code 无法使用。</p>
+<h4 id="q31">Q31｜最常用哪一个 <a class="question-link" href="#q31" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> Codex 和 Cursor 哪个更好用？你最常用哪个？</p>
+<p><strong>我的回答（概括）：</strong> 我说用得最多的是 Codex。</p>
+<h4 id="q32">Q32｜账号由谁提供 <a class="question-link" href="#q32" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 账号是自己付费的，还是公司或学校配置的？</p>
+<p><strong>我的回答（概括）：</strong> 我回答自己购买。</p>
+<h3 id="我的反问与面试官的说明">我的反问与面试官的说明</h3>
+<h4 id="r01">R01｜岗位更偏业务应用还是内部提效？ <a class="question-link" href="#r01" aria-label="链接到此问题">#</a></h4>
+<p><strong>我的反问（概括）：</strong> 实习生的工作更偏业务应用，还是内部 AI 工具与提效？</p>
+<p><strong>面试官的回答（概括）：</strong> 面试官说内部与外部方向都有，团队有自己的 AI 平台；希望实习生像合作伙伴一样参与理解、思考、提出想法与协作，不只做简单基础任务。公司会提供所需 AI 工具账号。</p>
+<h4 id="r02">R02｜团队怎样验收项目？ <a class="question-link" href="#r02" aria-label="链接到此问题">#</a></h4>
+<p><strong>我的反问（概括）：</strong> 团队怎么验收项目，是看任务完成，还是用户反馈？</p>
+<p><strong>面试官的回答（概括）：</strong> 面试官说工作面向实际业务同事，对事情的评价来自业务同事；没有给出具体量化指标或完整验收流程。</p>
+<h3 id="到岗-经历日期与通勤">到岗、经历日期与通勤</h3>
+<h4 id="q33">Q33｜目前是否在岗位所在地 <a class="question-link" href="#q33" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你现在在岗位所在城市吗？</p>
+<p><strong>我的回答（概括）：</strong> 我回答在。具体城市已匿名化。</p>
+<h4 id="q34">Q34｜到岗时间 <a class="question-link" href="#q34" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 如果通过，什么时候可以到岗？</p>
+<p><strong>我的回答（概括）：</strong> 我回答可以立刻到岗。</p>
+<h4 id="q35">Q35｜简历至今与当前实习状态 <a class="question-link" href="#q35" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你上一家公司不是写到至今吗，现在还在实习吗？</p>
+<p><strong>我的回答（概括）：</strong> 我先解释是线上实习、现在人已经回到国内，没有直接澄清到底是否仍在参与。</p>
+<h4 id="q36">Q36｜合作地点与时差 <a class="question-link" href="#q36" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 与合作团队沟通有没有时差？团队在哪里？</p>
+<p><strong>我的回答（概括）：</strong> 我回答当时是在海外开展项目；没有完整说明当前是否仍需跨时区沟通。具体国家已泛化。</p>
+<h4 id="q37">Q37｜经历是否已结束、简历是否未更新 <a class="question-link" href="#q37" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 所以你现在还有线上工作吗？是不是简历没有更新？</p>
+<p><strong>我的回答（概括）：</strong> 我明确回答这段经历此前已结束，并认可简历没有更新。具体结束月份已泛化。</p>
+<h4 id="q38">Q38｜通勤位置 <a class="question-link" href="#q38" aria-label="链接到此问题">#</a></h4>
+<p><strong>面试官的问题（概括）：</strong> 你目前在什么区域？面试官说明会考虑实习生的通勤时间。</p>
+<p><strong>我的回答（概括）：</strong> 我回答所在城区，并再次确认。面试官说会关注通勤过长的问题；具体城区与通勤举例已脱敏。</p></div>
+      <p class="back-link"><a href="../">← 回到 Notes</a></p>
+    </article></main>
+      <aside class="sidebar" aria-label="关于 Zhong">
+        <div class="sidebar-inner">
+          <div class="profile-notes">
+            <p><strong>现在 /</strong> 学习 Agent 相关内容，搭建自己的个人网站，也在准备求职。</p>
+            <p><strong>之前 /</strong> 毕业于墨尔本大学，先后取得 Bachelor of Science（Computing and Software System）和 Master of Information Technology 学位。</p>
+            <p><strong>兴趣 /</strong> 刘聪 KEY.L、足球，也喜欢动手搭建 Agent 应用，探索工程化和 harness 的设计。</p>
+          </div>
+          <p class="about-link"><a href="../../about/">更多关于 Zhong →</a></p>
+          <nav class="section-links" aria-label="探索"><a href="../../lab/agent/">Agent 小实验 →</a><a href="../../notes/">Notes →</a></nav>
+          <div class="social-links">
+            <a href="mailto:kaizhong.wang@student.unimelb.edu.au" aria-label="给 Zhong 发邮件" title="Email"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></a>
+            <a href="https://www.linkedin.com/in/kaizhong-wang-9410b0288/" aria-label="Zhong 的 LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M5.4 7.8H1.8V22h3.6V7.8ZM3.6 1a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM22 13.3c0-4.3-2.3-5.7-4.6-5.7a4 4 0 0 0-3.6 1.9V7.8h-3.6V22h3.6v-7.9c0-2.1 1.2-3.3 2.5-3.3s2.1.9 2.1 3.2v8H22v-8.7Z"/></svg></a>
+            <a href="https://x.com/Study_Agent1" aria-label="Zhong 的 X：Study_Agent1" title="X / Study_Agent1"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.5l-5.1-6.7L5.7 22H2.5l7.5-8.6L.8 2h6.7l4.6 6.1L18.9 2Zm-1.1 18h1.7L6.6 3.9H4.8L17.8 20Z"/></svg></a>
+            <a href="https://github.com/Rapeter" aria-label="Zhong 的 GitHub" title="GitHub"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 19c-4 1-4-2-6-2m12 5v-3.9a3.4 3.4 0 0 0-1-2.6c3.3-.4 6.8-1.6 6.8-7.3a5.7 5.7 0 0 0-1.5-3.9 5.3 5.3 0 0 0-.1-3.8s-1.2-.4-4 1.5a13.4 13.4 0 0 0-7.2 0C5.2.1 4 .5 4 .5a5.3 5.3 0 0 0-.1 3.8A5.7 5.7 0 0 0 2.4 8.2c0 5.7 3.5 6.9 6.8 7.3a3.4 3.4 0 0 0-1 2.6V22" /></svg></a>
+              <div class="wechat-contact">
+                <button class="wechat-toggle" type="button" aria-label="显示微信添加二维码" aria-expanded="false" aria-controls="sidebar-wechat-qr"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M9 2C4.6 2 1 4.8 1 8.3c0 2 1.2 3.8 3 5l-.8 2.4 2.8-1.4c.9.2 1.9.4 3 .4h.6a6.9 6.9 0 0 1-.4-2.2c0-3.7 3.5-6.6 7.8-6.6h.3C16 3.6 12.8 2 9 2Zm-3 4a1 1 0 1 1 0 2 1 1 0 0 1 0-2Zm6 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2Z"/><path d="M17 7c-3.9 0-7 2.4-7 5.5s3.1 5.5 7 5.5c.8 0 1.6-.1 2.3-.3L22 19l-.7-2.1c1.6-1 2.7-2.6 2.7-4.4C24 9.4 20.9 7 17 7Zm-2.5 3a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Zm5 0a.9.9 0 1 1 0 1.8.9.9 0 0 1 0-1.8Z"/></svg></button>
+                <div id="sidebar-wechat-qr" class="wechat-popup" hidden><div class="wechat-qr-card"><a href="../../assets/wechat-qr.jpg" aria-label="打开完整添加二维码"><img src="../../assets/wechat-qr.jpg" alt="Zhong 的微信添加二维码" width="888" height="1131" /></a></div></div>
+              </div>
+          </div>
+          <noscript><p><a href="../../assets/wechat-qr.jpg">查看微信二维码</a></p></noscript>
+          <p class="sidebar-note"><strong>正在求职。</strong> 我在丰富简历，准备面试和招聘。<a href="mailto:kaizhong.wang@student.unimelb.edu.au">通过 Email 联系我 →</a></p>
+        </div>
+      </aside>
+    </div>
+  </body>
+</html>

@@ -20,7 +20,7 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     generate();
     assert.match(await readFile(join(workspace, 'notes', 'first', 'index.html'), 'utf8'), /原版内容/);
     await writeFile(join(workspace, 'notes', 'first.md'), '**Q1：改题**\n更新后的内容');
-    entries.push({ ...entries[0], slug: 'second', title: '第二篇', updated: '2026-10-11' });
+    entries.push({ ...entries[0], slug: 'second', title: '第二篇', updated: '2026-10-11', type:'interview', interviewDate:'2026-09-29' });
     await writeFile(join(workspace, 'notes', 'collection.json'), JSON.stringify(entries));
     await writeFile(join(workspace, 'notes', 'second.md'), '# 新笔记\n新的正文');
     generate();
@@ -36,6 +36,13 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     assert.match(await readFile(join(workspace, 'notes', 'second', 'index.html'), 'utf8'), /新的正文/);
     assert.match(directory, /data-note-filter="Agent"/);
     assert.match(directory, /data-note-tags=/);
+    assert.match(directory, /data-note-category="interview"/);
+    assert.match(directory, /data-category-filter="interview"/);
+    const interview = await readFile(join(workspace, 'notes', 'second', 'index.html'), 'utf8');
+    assert.match(interview, /面试于[\s\S]*?2026-09-29/);
+    assert.match(interview, /更新于[\s\S]*?2026-10-11/);
+    assert.match(interview, /下载公开版/);
+    assert.equal((interview.match(/<h[12][^>]*>新笔记<\//g) || []).length, 0, 'source H1 is not repeated inside the published body');
     assert.match(updated, /assets\/notes.js/);
     assert.match(updated, /data-resume-reading/);
     const home = await readFile(join(workspace, 'index.html'), 'utf8');

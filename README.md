@@ -28,8 +28,8 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
 - `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
-- `notes/*.md`：笔记原文。
-- `notes/collection.json`：笔记标题、状态和更新日期。
+- `notes/*.md`：公开的笔记正文及面试实录公开版。
+- `notes/collection.json`：笔记分类、标题、状态、更新日期及面试日期。
 - `notes/index.html`、`notes/*/index.html`：生成的笔记目录及阅读页。
 - `styles.css`：全站样式与响应式布局。
 - `assets/`：图片和网站图标。
@@ -62,6 +62,16 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 新增笔记时，在 `notes/` 创建一个 Markdown 文件，并在 `collection.json` 增加条目；`slug` 应与文件名一致，使用小写字母、数字及连字符。
 
 Markdown 支持标题、段落、列表、粗体、斜体、行内代码、代码块、引用和链接；`**Q数字…**` 独立行会生成题目标题和目录锚点。原始 HTML 按文字显示。
+
+### 面试记录
+
+新增面试时，创建脱敏后的 `notes/<slug>.md`，并在 `collection.json` 添加 `type: "interview"`、`interviewDate`、`company`、`role`、`round` 和普通笔记已有字段。`interviewDate` 表示实际面试日期，`updated` 表示公开版最后修订日期，两者独立展示。列表按实际面试日期／学习笔记更新日期倒序排列；首页按更新日期选最新条目，同日更新时以面试日期排序。
+
+正文用 `## 主题` 和 `### Q01｜问题` 组织；反问使用 `R01`，直接反馈使用 `F01`。题号生成稳定链接，目录按标题层级嵌套；页面不重复 Markdown 首行 H1。问答保持纵向展开；比较表格使用普通 Markdown 表格，单元格同样转义 HTML。页面提供「下载公开版」。
+
+`notes/` 中的 Markdown 随网站一起公开。私有原稿、视频、转写片段和未脱敏附件应留在仓库外；只更新公开版正文。现有面试正文不包含录屏时间戳，问答、面试官说明与后续学习提醒分别保留。更新后运行 `npm run notes`。
+
+分类保存在 URL 的 `?category=interview` 或 `?category=learning` 参数中，标签筛选可与分类同时使用；切换分类会重置标签。
 
 Notes 列表按 `tags` 生成筛选按钮，选中标签保存在 URL 的 `?tag=` 参数中，可以复制链接或通过浏览器前进、后退切换。详情页目录标记当前章节；阅读位置按页面路径保存在浏览器 `localStorage`，再次打开时点击「继续阅读」恢复，不跨设备同步。带章节锚点的链接优先定位到指定章节。存储不可用或关闭 JavaScript 时，正文和目录链接仍可阅读。
 

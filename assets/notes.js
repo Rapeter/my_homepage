@@ -3,33 +3,46 @@ const filters = document.querySelector('.note-filters');
 if (filters) {
   const rows = [...document.querySelectorAll('.notes-list > li')];
   const buttons = [...filters.querySelectorAll('button')];
+  const categories = document.querySelector('.note-categories');
+  const categoryButtons = [...(categories?.querySelectorAll('button') || [])];
   const status = document.querySelector('[data-filter-status]');
-  function apply(tag, updateUrl = false) {
+  const readFilters = () => {
+    const params = new URL(location.href).searchParams;
+    return {tag:params.get('tag') || '', category:params.get('category') || ''};
+  };
+  function apply({tag, category}, updateUrl = false) {
     let visible = 0;
     rows.forEach(row => {
-      row.hidden = Boolean(tag) && !JSON.parse(row.dataset.noteTags).includes(tag);
+      row.hidden = (Boolean(tag) && !JSON.parse(row.dataset.noteTags).includes(tag)) || (Boolean(category) && row.dataset.noteCategory !== category);
       if (!row.hidden) visible++;
     });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.noteFilter === tag)));
-    status.textContent = visible ? `${tag ? `标签「${tag}」 · ` : ''}${visible} 篇笔记` : '没有这个标签的笔记，选择「全部」查看。';
+    categoryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.categoryFilter === category)));
+    status.textContent = visible ? `${tag ? `标签「${tag}」 · ` : ''}${visible} 篇笔记` : '没有符合当前分类和标签的笔记，选择「全部」查看。';
     if (updateUrl) {
       const url = new URL(location.href);
       if (tag) url.searchParams.set('tag', tag); else url.searchParams.delete('tag');
+      if (category) url.searchParams.set('category', category); else url.searchParams.delete('category');
       history.pushState(null, '', url);
     }
   }
   filters.addEventListener('click', event => {
     const button = event.target.closest('button[data-note-filter]');
-    if (button) apply(button.dataset.noteFilter, true);
+    if (button) apply({...readFilters(), tag:button.dataset.noteFilter}, true);
+  });
+  categories?.addEventListener('click', event => {
+    const button = event.target.closest('button[data-category-filter]');
+    if (button) apply({tag:'', category:button.dataset.categoryFilter}, true);
   });
   document.querySelector('.notes-list').addEventListener('click', event => {
     const link = event.target.closest('a.content-tag');
     if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey || event.button !== 0) return;
     event.preventDefault();
-    apply(new URL(link.href).searchParams.get('tag') || '', true);
+    apply({...readFilters(), tag:new URL(link.href).searchParams.get('tag') || ''}, true);
   });
-  window.addEventListener('popstate', () => apply(new URL(location.href).searchParams.get('tag') || ''));
-  apply(new URL(location.href).searchParams.get('tag') || '');
+  window.addEventListener('popstate', () => apply(readFilters()));
+  apply(readFilters());
+  if (categories) categories.hidden = false;
   filters.hidden = status.hidden = false;
 }
 

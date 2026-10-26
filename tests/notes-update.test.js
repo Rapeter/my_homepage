@@ -10,6 +10,8 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
   try {
     await mkdir(join(workspace, 'scripts'));
     await mkdir(join(workspace, 'notes'));
+    await mkdir(join(workspace, 'assets'));
+    await cp(new URL('../assets/note-search.js', import.meta.url), join(workspace, 'assets', 'note-search.js'));
     for (const file of ['site.js', 'notes.js', 'markdown.js', 'content-meta.js']) await cp(new URL(`../scripts/${file}`, import.meta.url), join(workspace, 'scripts', file));
     await cp(new URL('../index.html', import.meta.url), join(workspace, 'index.html'));
     await writeFile(join(workspace, 'package.json'), '{"type":"module"}');
@@ -38,6 +40,12 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     assert.match(directory, /data-note-tags=/);
     assert.match(directory, /data-note-category="interview"/);
     assert.match(directory, /data-category-filter="interview"/);
+    assert.match(directory, /id="note-search"/);
+    assert.match(directory, /id="note-search-index"/);
+    const index = JSON.parse(directory.match(/<script id="note-search-index" type="application\/json">([\s\S]*?)<\/script>/)[1]);
+    assert.equal(index.length,2);
+    assert.match(index.find(note=>note.slug==='first').sections.map(section=>section.text).join(' '),/更新后的内容/);
+    assert.equal(index.find(note=>note.slug==='first').sections[0].id,'q1');
     const interview = await readFile(join(workspace, 'notes', 'second', 'index.html'), 'utf8');
     assert.match(interview, /面试于[\s\S]*?2026-09-29/);
     assert.match(interview, /更新于[\s\S]*?2026-10-11/);
@@ -49,6 +57,13 @@ test('regenerating Notes publishes edited Markdown and new collection entries', 
     assert.match(home, /data-latest-note[\s\S]*?notes\/second\/[\s\S]*?第二篇/);
     generate();
     assert.equal(await readFile(join(workspace, 'index.html'), 'utf8'), home, 'generation must be idempotent');
+    await writeFile(join(workspace, 'notes', 'first.md'), '**Q1：更新**\n\n```html\n</script><img src=x onerror=alert(1)>\n```');
+    generate();
+    const safeDirectory = await readFile(join(workspace, 'notes', 'index.html'), 'utf8');
+    const safeIndexText = safeDirectory.match(/<script id="note-search-index" type="application\/json">([\s\S]*?)<\/script>/)[1];
+    const safeIndex = JSON.parse(safeIndexText);
+    assert.doesNotMatch(safeIndexText, /<script|<\/script|<img/);
+    assert.match(safeIndex.find(note=>note.slug==='first').sections[0].text, /<\/script><img/);
     await writeFile(join(workspace, 'notes', 'collection.json'), '[]');
     generate();
     const emptyHome = await readFile(join(workspace, 'index.html'), 'utf8');

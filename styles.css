@@ -181,6 +181,22 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .note-toc ol { margin: 16px 0 4px; padding-left: 24px; display: grid; gap: 12px; font-size: 13px; font-weight: 400; line-height: 1.8; }
 .note-toc a { color: #475569; }
 .note-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+.note-search { margin-top: 28px; font-size: 14px; font-weight: 400; color: #475569; }
+.note-search label { display: block; margin-bottom: 10px; font-weight: 500; }
+.search-field { display: flex; flex-wrap: wrap; gap: 10px; }
+.search-field input { flex: 1 1 220px; min-width: 0; width: 100%; padding: 11px 12px; font: inherit; line-height: 1.6; color: #334155; background: #f8fcff; border: 1px solid #b8d0e3; border-radius: 4px; }
+.search-field input::placeholder { color: #64748b; }
+.search-clear { font: inherit; font-size: 13px; padding: 8px 12px; border: 1px solid #b8d0e3; border-radius: 4px; background: transparent; color: #426b90; cursor: pointer; }
+.search-field :is(input,button):focus-visible { outline: 2px solid #4c87b6; outline-offset: 3px; }
+#search-help { margin-top: 8px; font-size: 12px; line-height: 1.8; color: #64748b; }
+.notes-list li > .note-meta + p { margin-top: 12px; }
+.search-hits { margin-top: 22px; display: grid; gap: 18px; }
+.search-hit { padding-left: 14px; border-left: 2px solid #c6dced; overflow-wrap: anywhere; }
+.search-hit-title { font-size: 14px; font-weight: 500; color: #426b90; }
+.search-hit p { margin-top: 8px; font-size: 13px; font-weight: 400; line-height: 1.9; color: #475569; }
+.search-hits summary { font-size: 12px; color: #426b90; cursor: pointer; }
+.search-hits details .search-hit { margin-top: 18px; }
+.notes-list mark { background: #cfe5f6; color: #1e4971; }
 .note-categories { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; padding-bottom: 12px; border-bottom: 1px solid #c6dced; }
 .note-categories button { padding: 4px 0; font: inherit; font-size: 15px; font-weight: 400; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #64748b; cursor: pointer; }
 .note-categories button[aria-pressed="true"] { color: #1e4971; border-bottom-color: #81a8c6; font-weight: 600; }

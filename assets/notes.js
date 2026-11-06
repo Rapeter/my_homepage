@@ -1,5 +1,6 @@
 // Progressive enhancement: links, full notes and the TOC work without JS.
 import {searchNotes, highlightParts} from './note-search.js';
+import {mountInterviewDraw} from './interview-draw.js';
 
 const filters = document.querySelector('.note-filters');
 if (filters) {
@@ -10,6 +11,7 @@ if (filters) {
   const searchInput = document.querySelector('#note-search');
   const clearSearch = document.querySelector('.search-clear');
   const records = JSON.parse(document.querySelector('#note-search-index').textContent);
+  mountInterviewDraw(document.querySelector('.interview-draw'), records);
   let composing = false;
   const buttons = [...filters.querySelectorAll('button')];
   const categories = document.querySelector('.note-categories');

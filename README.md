@@ -26,6 +26,7 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `assets/agent-scenarios.js`：正常完成、超时重试、步数耗尽的预设步骤与对应结果。
 - `assets/notes.js`：标签筛选、目录当前位置和本地阅读位置保存。
 - `assets/note-search.js`：构建与浏览器共用的章节索引、关键词匹配、摘要和高亮分段。
+- `assets/interview-draw.js`：Notes 随机抽题、题目链接与贴纸动效；贴纸资源在 `assets/*-sticker.svg`。
 - `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
 - `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
@@ -81,6 +82,8 @@ Notes 顶部提供学习笔记与面试记录全文搜索，范围是 `notes/col
 `npm run notes` 将公开 Markdown 的渲染正文提取为章节文本，按实际目录锚点生成索引，转义后嵌入 `notes/index.html` 的 `note-search-index` 数据块，不读取仓库外私有原稿。浏览器本地完成搜索，无后端、外部搜索服务或新增依赖。更新笔记时重新生成页面即可同步索引。
 
 搜索词保存在 `?q=`，可与 `category`、`tag` 组合；输入时替换当前历史状态，分类、标签和清除操作保留前进／后退记录。输入上限 160 字符，支持中文输入法组合输入。关闭 JavaScript 时仍显示完整笔记列表与普通链接。
+
+「乌萨奇抽一题」复用索引中的 `interview` 类型及 `Q` 题目锚点。抽题范围是全部已公开面试题，与当前搜索及筛选无关；有多道题时连续抽取不会重复上一题。点击结果打开原题章节。贴纸动效由点击触发，尊重系统减少动态效果设置。
 
 Notes 列表按 `tags` 生成筛选按钮，选中标签保存在 URL 的 `?tag=` 参数中，可以复制链接或通过浏览器前进、后退切换。详情页目录标记当前章节；阅读位置按页面路径保存在浏览器 `localStorage`，再次打开时点击「继续阅读」恢复，不跨设备同步。带章节锚点的链接优先定位到指定章节。存储不可用或关闭 JavaScript 时，正文和目录链接仍可阅读。
 

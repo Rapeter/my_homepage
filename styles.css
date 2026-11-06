@@ -36,6 +36,9 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .home-nav a:hover { color: #1e4971; }
 .home-updates { margin: 0 64px 48px; display: grid; gap: 16px; font-size: 14px; font-weight: 400; line-height: 1.8; }
 .home-updates p { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.home-updates [data-latest-note] { display: grid; grid-template-columns: minmax(0, auto) 56px; justify-content: start; align-items: center; column-gap: 12px; }
+.latest-note-copy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
+.latest-note-sticker { display: block; }
 .update-label { color: #64748b; min-width: 56px; font-size: 12px; }
 .home-updates a { color: #426b90; }
 .home-updates time { color: #64748b; font-size: 12px; }
@@ -189,6 +192,14 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .search-clear { font: inherit; font-size: 13px; padding: 8px 12px; border: 1px solid #b8d0e3; border-radius: 4px; background: transparent; color: #426b90; cursor: pointer; }
 .search-field :is(input,button):focus-visible { outline: 2px solid #4c87b6; outline-offset: 3px; }
 #search-help { margin-top: 8px; font-size: 12px; line-height: 1.8; color: #64748b; }
+.interview-draw { margin-top: 18px; font-size: 14px; font-weight: 400; }
+.draw-button { display: inline-flex; align-items: center; gap: 6px; padding: 2px 13px 2px 5px; border: 1px solid #c6dced; border-radius: 6px; background: #f8fcff; color: #1e4971; font: inherit; cursor: pointer; }
+.draw-button:hover { background: #deedf8; border-color: #81a8c6; }
+.draw-button:focus-visible { outline: 2px solid #4c87b6; outline-offset: 3px; }
+.draw-button img { flex: 0 0 auto; }
+.draw-result { margin-top: 12px; padding: 4px 0 4px 12px; border-left: 2px solid #c6dced; line-height: 1.7; overflow-wrap: anywhere; }
+.draw-result a { color: #426b90; font-weight: 500; }
+.draw-source { margin-top: 4px; font-size: 12px; color: #64748b; }
 .notes-list li > .note-meta + p { margin-top: 12px; }
 .search-hits { margin-top: 22px; display: grid; gap: 18px; }
 .search-hit { padding-left: 14px; border-left: 2px solid #c6dced; overflow-wrap: anywhere; }

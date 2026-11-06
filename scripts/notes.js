@@ -30,7 +30,7 @@ export async function generateNotes() {
   const home = await readFile(homeUrl, 'utf8');
   const latest = [...entries].sort((a, b) => b.updated.localeCompare(a.updated) || (b.interviewDate || '').localeCompare(a.interviewDate || ''))[0];
   const latestHtml = latest
-    ? `<p data-latest-note><span class="update-label">最新笔记</span><a href="./notes/${escapeHtml(latest.slug)}/">${escapeHtml(latest.title)}</a><time datetime="${escapeHtml(latest.updated)}">更新于 ${escapeHtml(latest.updated)}</time></p>`
+    ? `<p data-latest-note><span class="latest-note-copy"><span class="update-label">最新笔记</span><a href="./notes/${escapeHtml(latest.slug)}/">${escapeHtml(latest.title)}</a><time datetime="${escapeHtml(latest.updated)}">更新于 ${escapeHtml(latest.updated)}</time></span><img class="latest-note-sticker" src="./assets/hachiware-sticker.svg" alt="" width="56" height="56" /></p>`
     : '<p data-latest-note hidden></p>';
   // Keep the homepage entry in sync when notes are added or their dates change.
   await save(homeUrl, home.replace(/<!-- latest-note -->[\s\S]*?<!-- \/latest-note -->/, `<!-- latest-note -->${latestHtml}<!-- /latest-note -->`));
@@ -40,7 +40,7 @@ export async function generateNotes() {
     const interview = entry.type === 'interview';
     const rendered = renderMarkdown(interview ? source.replace(/^# [^\n]+\r?\n+/, '') : source);
     const toc = rendered.toc;
-    searchIndex.push({slug:entry.slug, title:entry.title, description:entry.description, tags:entry.tags || [], sections:indexSections(rendered.html)});
+    searchIndex.push({slug:entry.slug, title:entry.title, description:entry.description, type:interview ? 'interview' : 'learning', tags:entry.tags || [], sections:indexSections(rendered.html)});
     const html = interview ? rendered.html.replace(/(<h[2-6] id="([qrf]\d+(?:-\d+)?)">)([\s\S]*?)(<\/h[2-6]>)/g, (_, open, id, title, close) => `${open}${title} <a class="question-link" href="#${id}" aria-label="链接到此问题">#</a>${close}`) : rendered.html;
     const metadata = renderContentMeta(html, entry.tags, { date: entry.updated, dateLabel: '更新于 ', tagBase: '../' });
     const interviewDate = interview && entry.interviewDate ? `面试于 <time datetime="${escapeHtml(entry.interviewDate)}">${escapeHtml(entry.interviewDate)}</time> · ` : '';
@@ -70,6 +70,11 @@ export async function generateNotes() {
       <div class="search-field"><input id="note-search" name="q" type="search" maxlength="160" placeholder="搜索正文，如：权限、Checkpoint、TCP" aria-describedby="search-help" autocomplete="off" /><button type="button" class="search-clear" hidden>清除搜索</button></div>
       <p id="search-help">多个关键词可用空格分隔，也可以结合分类和标签筛选。</p>
     </form>
+    <div class="interview-draw" hidden>
+      <button type="button" class="draw-button"><img src="../assets/usagi-sticker.svg" alt="" width="40" height="40" /><span>乌萨奇抽一题</span></button>
+      <div class="draw-result" hidden><a></a><p class="draw-source"></p></div>
+      <span class="visually-hidden" role="status"></span>
+    </div>
     <div class="note-categories" role="group" aria-label="笔记分类" hidden><button type="button" data-category-filter="" aria-pressed="true">全部</button><button type="button" data-category-filter="learning" aria-pressed="false">学习笔记</button><button type="button" data-category-filter="interview" aria-pressed="false">面试记录</button></div>
     <div class="note-filters" role="group" aria-label="按标签筛选笔记" hidden><button type="button" data-note-filter="" aria-pressed="true">全部</button>${tags.map(tag => `<button type="button" data-note-filter="${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)}</button>`).join('')}</div>
     <p class="filter-status" data-filter-status role="status" hidden></p>

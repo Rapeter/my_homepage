@@ -30,7 +30,7 @@ export async function generateNotes() {
   const home = await readFile(homeUrl, 'utf8');
   const latest = [...entries].sort((a, b) => b.updated.localeCompare(a.updated) || (b.interviewDate || '').localeCompare(a.interviewDate || ''))[0];
   const latestHtml = latest
-    ? `<p data-latest-note><span class="latest-note-copy"><span class="update-label">最新笔记</span><a href="./notes/${escapeHtml(latest.slug)}/">${escapeHtml(latest.title)}</a><time datetime="${escapeHtml(latest.updated)}">更新于 ${escapeHtml(latest.updated)}</time></span><img class="latest-note-sticker" src="./assets/hachiware-sticker.svg" alt="" width="56" height="56" /></p>`
+    ? `<p data-latest-note><span class="latest-note-copy"><span class="update-label">最新笔记</span><a href="./notes/${escapeHtml(latest.slug)}/">${escapeHtml(latest.title)}</a><time datetime="${escapeHtml(latest.updated)}">更新于 ${escapeHtml(latest.updated)}</time></span><img class="latest-note-sticker" src="./assets/hachiware-sticker.png" alt="" width="56" height="56" /></p>`
     : '<p data-latest-note hidden></p>';
   // Keep the homepage entry in sync when notes are added or their dates change.
   await save(homeUrl, home.replace(/<!-- latest-note -->[\s\S]*?<!-- \/latest-note -->/, `<!-- latest-note -->${latestHtml}<!-- /latest-note -->`));
@@ -71,7 +71,7 @@ export async function generateNotes() {
       <p id="search-help">多个关键词可用空格分隔，也可以结合分类和标签筛选。</p>
     </form>
     <div class="interview-draw" hidden>
-      <button type="button" class="draw-button"><img src="../assets/usagi-sticker.svg" alt="" width="40" height="40" /><span>乌萨奇抽一题</span></button>
+      <button type="button" class="draw-button"><img src="../assets/usagi-sticker.png" alt="" width="40" height="40" /><span>乌萨奇抽一题</span></button>
       <div class="draw-result" hidden><a></a><p class="draw-source"></p></div>
       <span class="visually-hidden" role="status"></span>
     </div>

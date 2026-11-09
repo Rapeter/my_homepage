@@ -27,6 +27,7 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `assets/notes.js`：标签筛选、目录当前位置和本地阅读位置保存。
 - `assets/note-search.js`：构建与浏览器共用的章节索引、关键词匹配、摘要和高亮分段。
 - `assets/interview-draw.js`：Notes 随机抽题、题目链接与贴纸动效；两张角色 PNG 来自《ちいかわ》动画官网：[小八](https://www.anime-chiikawa.jp/images/loading/hachiware.png)、[乌萨奇](https://www.anime-chiikawa.jp/images/loading/usagi.png)。
+- `assets/theme.js`、`assets/chiikawa-stars.svg`：全站主题偏好、页底模式开关与星星装饰。
 - `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
 - `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。
@@ -52,6 +53,12 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 卡片内容在 `index.html` 的 `data-profile-card` 区域编辑，复用 `assets/avatar.jpg`。鼠标移动或触摸卡片会改变倾斜角度与反光；移出或松开后复位。键盘聚焦后可用方向键倾斜，Esc 复位。尊重系统减少动态效果设置，停留不动时停止动画循环，不申请设备方向权限；关闭 JavaScript 后仍可查看卡片和使用邮件链接。
 
 卡片参考 [React Bits Profile Card](https://reactbits.dev/components/profile-card)，适配为原生 HTML/CSS/JavaScript，未引入 React 或构建依赖。上游署名与许可证保留在 `assets/profile-card.LICENSE.txt`，会随静态资源一起发布。
+
+## Chiikawa 模式
+
+每页底部都可切换 Chiikawa 模式。默认使用原浅蓝主题；开启后使用奶油色背景、浅蓝控件、静态星星装饰，以及已有的原版角色 PNG。主题样式集中在 `styles.css` 的 `data-theme="chiikawa"` 选择器中。
+
+`assets/theme.js` 在样式表之前读取 `localStorage` 的 `zhong:theme`，取值为 `chiikawa` 或 `default`；更新根元素、浏览器主题色及页底按钮，支持同源多标签页同步。存储被禁用时仍可切换当前页，关闭 JavaScript 时保留默认主题与页面内容。手写 HTML 需保留头部脚本，Notes 页面由 `scripts/site.js` 自动加入相应相对路径。
 
 ## 更新笔记
 

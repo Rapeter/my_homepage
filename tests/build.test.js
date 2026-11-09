@@ -16,7 +16,7 @@ test('building replaces stale output so removed chat and feed files cannot be pu
   assert.equal(entries.includes('atom.xml'), false, 'removed subscription feed must not survive a rebuild');
   const html = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8');
   assert.doesNotMatch(html, /src\/app\.js|chat-form|数字分身/);
-  for (const path of ['lab/agent/index.html', 'assets/agent-demo.js', 'notes/index.html', 'notes/agent-interview/index.html', 'notes/agent-interview.md']) {
+  for (const path of ['lab/agent/index.html', 'assets/agent-demo.js', 'assets/theme.js', 'assets/chiikawa-stars.svg', 'notes/index.html', 'notes/agent-interview/index.html', 'notes/agent-interview.md']) {
     const published = await access(new URL(`../dist/${path}`, import.meta.url)).then(() => true, () => false);
     assert.equal(published, true, `${path} must be published`);
   }

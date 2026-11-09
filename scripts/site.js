@@ -16,6 +16,7 @@ export async function renderPage({ title, description, content, depth = 1, scrip
     <meta name="description" content="${escapeHtml(description)}" />
     <title>${escapeHtml(title)} · Zhong</title>
     <link rel="icon" href="${prefix}assets/favicon-avatar.ico" type="image/x-icon" />
+    <script src="${prefix}assets/theme.js"></script>
     <link rel="stylesheet" href="${prefix}styles.css" />
 ${sidebar.includes('wechat-contact') ? `    <script type="module" src="${prefix}assets/about-contact.js"></script>\n` : ''}${script ? `    <script type="module" src="${prefix}${script}"></script>\n` : ''}  </head>
   <body>

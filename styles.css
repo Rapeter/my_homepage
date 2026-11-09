@@ -245,6 +245,39 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .note-body code { font-size: .86em; color: #3730a3; }
 .note-body pre code { color: inherit; font-size: inherit; }
 .note-body blockquote { margin: 24px 0; padding-left: 20px; border-left: 2px solid #c7d2fe; }
+
+/* A quiet, persistent alternative theme. Character art remains the official PNGs. */
+.site-theme { max-width: 1600px; margin: 0 auto; padding: 24px 64px 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.theme-toggle { display: inline-flex; align-items: center; gap: 10px; padding: 9px 12px; border: 1px solid #c6dced; border-radius: 6px; background: transparent; font: inherit; font-size: 12px; font-weight: 400; line-height: 1.6; color: #426b90; cursor: pointer; }
+.theme-toggle:focus-visible { outline: 2px solid #4c87b6; outline-offset: 4px; }
+.theme-toggle-track { display: inline-block; position: relative; width: 28px; height: 16px; border: 1px solid #9bb8cc; border-radius: 12px; background: #e4eef5; }
+.theme-toggle-track::before { content: ''; position: absolute; width: 10px; height: 10px; top: 2px; left: 2px; border-radius: 50%; background: #647e91; }
+.theme-toggle[aria-pressed="true"] .theme-toggle-track { background: #d9edf6; }
+.theme-toggle[aria-pressed="true"] .theme-toggle-track::before { left: 14px; background: #557f96; }
+.theme-toggle-state { color: #64748b; font-size: 11px; }
+.theme-friends { display: none; gap: 6px; }
+.theme-friends img { object-fit: contain; }
+:root[data-theme="chiikawa"] { background: #fffaf0; color: #594e48; }
+:root[data-theme="chiikawa"] a { color: #416b83; border-bottom-color: #cedfe5; }
+:root[data-theme="chiikawa"] a:hover { color: #345d73; }
+:root[data-theme="chiikawa"] :is(.banner-copy h1,.reading-page h1,.archive-year,.prose h2,.prose h3,.prose h4,.sidebar strong) { color: #514e49; }
+:root[data-theme="chiikawa"] :is(.banner-copy,.prose,.profile-notes,.note-body) { color: #5c5c55; }
+:root[data-theme="chiikawa"] .intro-banner { background: url('./assets/chiikawa-stars.svg') no-repeat right top / 100px 67px; }
+:root[data-theme="chiikawa"] .reading-page { background: url('./assets/chiikawa-stars.svg') no-repeat right top / 76px 51px; }
+:root[data-theme="chiikawa"] .breadcrumbs { padding-right: 80px; }
+:root[data-theme="chiikawa"] :is(.demo-controls,.notes-page.is-enhanced .note-toc) { background: #fffaf0; }
+:root[data-theme="chiikawa"] :is(.search-field input,.draw-button,.step-detail,.contact-links > a,.wechat-toggle,.demo-scenarios select,.wechat-qr-card) { background: #fffdf8; border-color: #ccdce0; color: #52616b; }
+:root[data-theme="chiikawa"] :is(.contact-links,.demo-result,.demo-steps .is-current,.note-filters button[aria-pressed="true"]) { background: #e7f0ef; color: #365e76; }
+:root[data-theme="chiikawa"] .demo-page button.primary-control { background: #456f87; border-color: #456f87; }
+:root[data-theme="chiikawa"] :is(.step-detail pre,.note-body pre) { background: #f2f0e8; color: #514e49; }
+:root[data-theme="chiikawa"] .notes-list mark { background: #d4e9f1; color: #365e76; }
+:root[data-theme="chiikawa"] .theme-friends { display: inline-flex; }
+:root[data-theme="chiikawa"] .site-theme { background: url('./assets/chiikawa-stars.svg') no-repeat right 64px center / 100px 67px; }
+:root[data-theme="chiikawa"] .theme-toggle { background: #fffdf8; }
+@media (max-width: 1023px) {
+  .site-theme { padding: 20px 16px 32px; }
+  :root[data-theme="chiikawa"] .site-theme { background-position: right 16px center; }
+}
 @media (max-width: 1023px) {
   .demo-page, .notes-page { width: auto; margin: 24px 16px 64px; }
   .demo-page h1, .notes-page h1 { font-size: 26px; }

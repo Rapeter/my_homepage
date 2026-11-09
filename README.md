@@ -108,6 +108,10 @@ Notes 列表按 `tags` 生成筛选按钮，选中标签保存在 URL 的 `?tag=
 
 ## 发布
 
-运行 `npm run build` 后，将 `dist/` 部署到静态托管平台。每次构建会清理并重新生成该目录，不要直接修改构建产物。
+GitHub Pages 地址：[rapeter.github.io/my_homepage](https://rapeter.github.io/my_homepage/)。
 
-也可在 GitHub 仓库 Settings → Pages 中选择 main 分支的根目录发布。页面使用相对路径，支持子目录部署。
+`.github/workflows/pages.yml` 在每次推送到 `main` 时自动运行测试、构建并发布 `dist/`，也可在仓库 Actions 中手动运行。使用 Node.js 22 和固定版本的 GitHub 官方 Actions，无需安装项目依赖或配置额外密钥。
+
+仓库 Settings → Pages 的 Source 设为 **GitHub Actions**。工作流只上传构建后的静态网页；`scripts/`、测试和本地检查文件不进入发布产物。部署结果可在 Actions 中查看。
+
+本地运行 `npm run build` 可核对相同的 `dist/` 产物。每次构建会清理并重新生成该目录，不要直接修改构建产物。页面使用相对路径，支持 `/my_homepage/` 子目录部署。

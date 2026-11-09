@@ -62,6 +62,9 @@ export async function generateNotes() {
     list.push(`<li data-note-slug="${escapeHtml(entry.slug)}" data-note-category="${interview ? 'interview' : 'learning'}" data-note-tags="${escapeHtml(JSON.stringify(entry.tags || []))}"><a href="./${entry.slug}/">${escapeHtml(entry.title)}</a>${listMetadata}<p class="note-meta">${interviewDate}${escapeHtml(entry.status)}</p><p>${escapeHtml(entry.description)}</p></li>`);
   }
   const tags = [...new Set(entries.flatMap(entry => entry.tags || []))];
+  const featuredTags = [...new Set(['Agent','后端','产品',...tags])].filter(tag=>tags.includes(tag)).slice(0,3);
+  const extraTags = tags.filter(tag=>!featuredTags.includes(tag));
+  const tagButton = tag => `<button type="button" data-note-filter="${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)}</button>`;
   await save(new URL('../notes/index.html', import.meta.url), await renderPage({ title: 'Notes', description: '持续整理和更新的学习笔记。', content: `<article class="reading-page notes-page">
     <nav class="breadcrumbs" aria-label="位置"><a href="../">首页</a><span aria-hidden="true">›</span>Notes</nav>
     <h1>Notes</h1><p class="page-intro">边学边记，持续整理和更新。</p>
@@ -72,11 +75,11 @@ export async function generateNotes() {
     </form>
     <div class="interview-draw" hidden>
       <button type="button" class="draw-button"><img src="../assets/usagi-sticker.png" alt="" width="40" height="40" /><span>乌萨奇抽一题</span></button>
-      <div class="draw-result" hidden><a></a><p class="draw-source"></p></div>
+      <div class="draw-result" hidden><a></a><p class="draw-source"></p><details class="draw-answer"><summary>查看当时回答</summary><p class="draw-answer-note">保留当时表达及相关追问，完整上下文见原文。</p><p class="draw-answer-copy"></p></details></div>
       <span class="visually-hidden" role="status"></span>
     </div>
     <div class="note-categories" role="group" aria-label="笔记分类" hidden><button type="button" data-category-filter="" aria-pressed="true">全部</button><button type="button" data-category-filter="learning" aria-pressed="false">学习笔记</button><button type="button" data-category-filter="interview" aria-pressed="false">面试记录</button></div>
-    <div class="note-filters" role="group" aria-label="按标签筛选笔记" hidden><button type="button" data-note-filter="" aria-pressed="true">全部</button>${tags.map(tag => `<button type="button" data-note-filter="${escapeHtml(tag)}" aria-pressed="false">${escapeHtml(tag)}</button>`).join('')}</div>
+    <div class="note-filters" role="group" aria-label="按标签筛选笔记" hidden><button type="button" data-note-filter="" aria-pressed="true">全部</button>${featuredTags.map(tagButton).join('')}${extraTags.length ? `<details class="more-tags"><summary>更多标签</summary><div class="more-tags-list">${extraTags.map(tagButton).join('')}</div></details>` : ''}</div>
     <p class="filter-status" data-filter-status role="status" hidden></p>
     <ul class="notes-list">${list.join('\n')}</ul>
     <script id="note-search-index" type="application/json">${JSON.stringify(searchIndex).replace(/[<>&\u2028\u2029]/g, char => `\\u${char.charCodeAt(0).toString(16).padStart(4,'0')}`)}</script>

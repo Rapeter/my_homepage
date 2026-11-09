@@ -14,6 +14,7 @@ if (filters) {
   mountInterviewDraw(document.querySelector('.interview-draw'), records);
   let composing = false;
   const buttons = [...filters.querySelectorAll('button')];
+  const moreTags = filters.querySelector('.more-tags');
   const categories = document.querySelector('.note-categories');
   const categoryButtons = [...(categories?.querySelectorAll('button') || [])];
   const status = document.querySelector('[data-filter-status]');
@@ -64,6 +65,7 @@ if (filters) {
       [...rows].sort((a,b)=>(positions.get(a.dataset.noteSlug)??Infinity)-(positions.get(b.dataset.noteSlug)??Infinity)).forEach(row=>list.append(row));
     } else rows.forEach(row=>list.append(row));
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.noteFilter === tag)));
+    if (moreTags?.querySelector('[aria-pressed="true"]')) moreTags.open=true;
     categoryButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.categoryFilter === category)));
     clearSearch.hidden = !searchInput.value;
     status.textContent = visible

@@ -1,7 +1,15 @@
 export function interviewQuestions(records) {
   return records.filter(record=>record.type==='interview').flatMap(record=>record.sections
     .filter(section=>/^q\d+(?:-\d+)?$/.test(section.id) && section.title)
-    .map(section=>({href:`./${record.slug}/#${section.id}`,title:section.title,source:record.title})));
+    .map(section=>{
+      const text=section.text || '';
+      const body=(text.startsWith(section.title)?text.slice(section.title.length):text).trim();
+      const reverse=/我的反问/.test(section.title) || /^我的提问\s*[:：]/.test(body);
+      const marker=reverse?null:body.match(/(?:^|\s)(?:我的回答(?:（概括）)?|实际回答与对话过程(?:（概括）)?)\s*[:：]\s*/u);
+      return {href:`./${record.slug}/#${section.id}`,title:section.title,source:record.title,
+        answer:(marker?body.slice(marker.index+marker[0].length):body).trim(),
+        answerLabel:marker?'当时回答':'当时问答记录'};
+    }));
 }
 
 export function drawIndex(count, previous, random = Math.random) {
@@ -21,6 +29,8 @@ export function mountInterviewDraw(root, records) {
   const result = root.querySelector('.draw-result');
   const link = result.querySelector('a');
   const source = result.querySelector('.draw-source');
+  const answer = result.querySelector('.draw-answer');
+  const answerCopy = result.querySelector('.draw-answer-copy');
   const announcement = root.querySelector('[role="status"]');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let previous=-1, motion;
@@ -30,6 +40,9 @@ export function mountInterviewDraw(root, records) {
     link.href=question.href;
     link.textContent=question.title;
     source.textContent=`来自：${question.source}`;
+    answer.open=false;
+    answer.querySelector('summary').textContent=`查看${question.answerLabel}`;
+    answerCopy.textContent=question.answer || '本条没有单独记录清晰回答，请打开原文查看。';
     result.hidden=false;
     announcement.textContent=`抽到：${question.title}，来自${question.source}`;
     motion?.cancel();

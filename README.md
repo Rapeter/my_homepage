@@ -28,6 +28,7 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `assets/note-search.js`：构建与浏览器共用的章节索引、关键词匹配、摘要和高亮分段。
 - `assets/interview-draw.js`：Notes 随机抽题、题目链接与贴纸动效；两张角色 PNG 来自《ちいかわ》动画官网：[小八](https://www.anime-chiikawa.jp/images/loading/hachiware.png)、[乌萨奇](https://www.anime-chiikawa.jp/images/loading/usagi.png)。
 - `assets/theme.js`、`assets/chiikawa-stars.svg`：全站主题偏好、页底模式开关与星星装饰。
+- `assets/home-sticker.js`：首页小八的悬停、点击和键盘打招呼动作；保留原版 PNG，尊重减少动态效果设置。
 - `assets/profile-card.css`、`assets/profile-card.js`：首页个人卡片的外观、鼠标 / 触摸倾斜与键盘交互。
 - `assets/profile-foil.svg`：个人卡片的全息纹理遮罩。
 - `assets/about-contact.js`、`assets/wechat-qr.jpg`：首页侧栏与 About 联系图标共用的二维码交互与图片。

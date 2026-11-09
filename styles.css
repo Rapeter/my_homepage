@@ -39,6 +39,9 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .home-updates [data-latest-note] { display: grid; grid-template-columns: minmax(0, auto) 56px; justify-content: start; align-items: center; column-gap: 12px; }
 .latest-note-copy { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px; }
 .latest-note-sticker { display: block; object-fit: contain; }
+.hachiware-hello { display: grid; place-items: center; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 8px; background: transparent; cursor: pointer; touch-action: manipulation; }
+.hachiware-hello .latest-note-sticker { transform-origin: 50% 92%; }
+.hachiware-hello:focus-visible { outline: 2px solid #4c87b6; outline-offset: 4px; }
 .update-label { color: #64748b; min-width: 56px; font-size: 12px; }
 .home-updates a { color: #426b90; }
 .home-updates time { color: #64748b; font-size: 12px; }

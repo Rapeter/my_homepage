@@ -29,9 +29,6 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .banner-copy { color: #475569; font-size: 17px; font-weight: 400; line-height: 1.8; }
 .banner-copy h1 { color: #1e293b; font-size: clamp(32px, 3.3vw, 48px); font-weight: 650; letter-spacing: -1.2px; line-height: 1.35; margin-bottom: 24px; }
 .banner-copy p + p { margin-top: 4px; }
-.banner-copy .intro-internships { margin-top: 12px; font-size: 14px; }
-.intro-internships a { color: #426b90; border-color: #c6dced; }
-.intro-internships a:hover { color: #1e4971; }
 .banner-copy .intro-about { display: inline-block; margin-top: 24px; font-size: 14px; color: #4f6f91; border-color: #c6dced; }
 .banner-copy .intro-about:hover { color: #1e4971; }
 .home-nav { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 24px; font-size: 14px; }
@@ -62,6 +59,8 @@ a:focus-visible { outline: 2px solid #6366f1; outline-offset: 5px; }
 .sidebar { min-width: 0; }
 .sidebar-inner { position: sticky; top: 48px; margin: 0 64px 64px 16px; font-size: 12px; font-weight: 500; line-height: 19.5px; color: #64748b; }
 .profile-notes { display: grid; gap: 20px; }
+.profile-notes a { color: #426b90; }
+.profile-notes a:hover { color: #1e4971; }
 .sidebar strong { font-weight: 600; color: #000; }
 .about-link { margin-top: 32px; line-height: 16px; }
 .social-links { position: relative; margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }

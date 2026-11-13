@@ -1,8 +1,8 @@
 {
   "internships": [
-    { "organization": "力拓", "url": "https://riotinto.cn/", "title": "", "period": "", "summary": "", "highlights": [] },
-    { "organization": "通付盾", "url": "https://www.tongfudun.com/", "title": "", "period": "", "summary": "", "highlights": [] },
-    { "organization": "智己", "url": "https://www.immotors.com/", "title": "", "period": "", "summary": "", "highlights": [] }
+    { "organization": "力拓", "url": "https://riotinto.cn/", "title": "数字化团队 · AI 应用开发工程师", "period": "2025.09 – 2026.09", "summary": "通过校企合作参与海外矿区的 AI 应用开发，主要做安全作业系统的 Agent 接入和岗位 AI 助手。", "highlights": ["将现有安全作业系统的接口封装成 MCP 工具，让 Agent 能调用业务能力，并为写操作加入权限检查和人工确认。", "把岗位任务拆成可复用的 Skill 和工作流，支持长任务断点恢复，并通过执行回放和回归评测定位问题。"] },
+    { "organization": "通付盾", "url": "https://www.tongfudun.com/", "title": "AI 实习生", "period": "", "summary": "", "highlights": [] },
+    { "organization": "智己", "url": "https://www.immotors.com/", "title": "AI 推进部实习生", "period": "", "summary": "", "highlights": [] }
   ],
   "education": [
     { "organization": "墨尔本大学", "url": "https://www.unimelb.edu.au/", "title": "Master of Information Technology", "period": "", "summary": "", "highlights": [] },

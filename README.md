@@ -8,8 +8,11 @@
 
 ```sh
 npm run dev      # http://127.0.0.1:4173
+npm run generate # 依次运行下面四个生成步骤
 npm run notes    # 从 Markdown 重新生成 Notes 页面
 npm run articles # 更新首页与文章页的字数、阅读时间和标签
+npm run profile  # 从 JSON 生成项目页、首页精选项目、About 经历与简历链接
+npm run layout   # 把页头、侧栏和分享元信息同步到手写页面，并生成 404 页
 npm test         # 运行构建检查
 npm run build    # 清理并生成 dist/
 npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
@@ -17,8 +20,13 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 
 ## 目录结构
 
-- `index.html`：首页入口。
+- `index.html`：首页入口，也是全站侧栏的唯一来源。
 - `about/index.html`：About 页面。
+- `about/experience.json`：About 页的实习与教育经历。
+- `projects/collection.json`：项目数据；`projects/index.html` 由它生成。
+- `404.html`：生成的「页面不存在」页面。
+- `assets/page-tools.js`：全站「回到顶部」按钮，文章和笔记页的阅读进度条。
+- `assets/not-found.js`：404 页显示访问地址，并把最后一段路径预填为 Notes 搜索词。
 - `posts/*/index.html`：文章页面。
 - `posts/collection.json`：文章 slug 与标签。
 - `lab/agent/index.html`：Agent 工具调用过程演示。
@@ -42,12 +50,41 @@ npm run preview  # 预览 dist/，请先停止同端口的 dev 服务
 - `scripts/build.js`：静态文件构建脚本。
 - `scripts/notes.js`、`scripts/markdown.js`：笔记页面生成和 Markdown 转换。
 - `scripts/articles.js`、`scripts/content-meta.js`：文章元信息生成、正文字数与阅读时间计算。
+- `scripts/site.js`：页头、分享元信息、侧栏复制和生成页面模板。
+- `scripts/profile.js`：项目、经历与简历链接生成，含链接校验。
+- `scripts/layout.js`：同步手写页面的公共部分，生成 `404.html`。
 - `tests/`：构建检查。
 - `dist/`：构建产物，不提交到 Git。
 
 页面内容直接在对应 HTML 文件中编辑；全站布局在 `styles.css`，首页个人卡片的独立样式在 `assets/profile-card.css`。
 
-首页介绍下方的四个导航链接与 `listening-note`（最近在听）在 `index.html` 编辑。`latest-note` 注释之间的最新笔记由 `npm run notes` 按 `updated` 日期自动更新，请保留该标记。
+首页介绍下方的快速入口按钮与 `listening-note`（最近在听）在 `index.html` 编辑。`latest-note` 注释之间的最新笔记由 `npm run notes` 按 `updated` 日期自动更新，请保留该标记。
+
+## 公共页头与侧栏
+
+每页顶部的导航（首页、项目、Notes、小实验、关于我）由 `scripts/site.js` 的 `renderHeader` 生成，当前页面高亮；文章页高亮「首页」，笔记阅读页高亮「Notes」。手机端导航单独占一行，可横向滑动。
+
+侧栏只在 `index.html` 中编辑。`npm run layout` 会把它复制到 About、Agent 小实验和文章页，Notes、项目页和 404 页在生成时同样使用它，路径自动换成相应的相对路径。手写页面里 `<!-- site-head -->` 和 `<!-- site-header -->` 之间的内容也是生成的，不要手动修改。新增手写页面时，在 `scripts/layout.js` 的 `layoutPages` 中登记。
+
+`site-head` 包含 canonical 链接和 Open Graph 分享信息，标题与描述取自页面已有的 `<title>` 和 `description`，分享图使用头像。
+
+## 项目、经历与简历
+
+项目写在 `projects/collection.json`：`slug`、`title`、`summary` 必填；`role`、`period`、`stack`、`highlights`、`links` 可选，留空的字段不显示。`featured: true` 的项目会出现在首页（最多 4 个）；没有标记时首页显示前 4 个；没有项目时显示提示文字。`links` 只接受 `https://` 外链，或站内路径（如 `lab/agent/`），其他写法会让生成失败。
+
+经历写在 `about/experience.json` 的 `internships` 和 `education` 数组中，按数组顺序显示。`organization` 必填，`url` 只接受 `https://`；`title`、`period`、`summary` 留空不显示；`highlights` 不为空时，会出现可展开的「主要工作」。
+
+把简历放到 `assets/resume.pdf` 后运行 `npm run generate`，首页按钮、侧栏和 About 页会出现「下载简历（PDF）」；删除文件后这些链接会一起消失。简历会随网站公开，放上去之前请先去掉手机号等不想公开的信息。
+
+## 深色模式
+
+页头右侧的按钮用来切换深色模式。没有手动选择过时，跟随系统设置；选择结果保存在 `localStorage` 的 `zhong:color-scheme` 中（`dark` 或 `light`）。Chiikawa 模式优先：开启 Chiikawa 时显示奶油色主题；在 Chiikawa 模式下打开深色模式，会同时关闭 Chiikawa。
+
+颜色集中在 `styles.css` 顶部的 CSS 变量里，三套主题只覆盖变量值。修改样式时请使用变量，不要直接写颜色。关闭 JavaScript 时显示浅色主题。
+
+## 404 页面
+
+GitHub Pages 遇到不存在的地址时会返回 `404.html`。这个页面可能出现在任意层级的路径下，所以它在加载其他资源之前，先根据当前地址设置 `<base>`（`/my_homepage/` 或本地的 `/`）。本地 `npm run dev` 同样对不存在的路径返回这个页面。
 
 ## 首页个人卡片
 
@@ -115,7 +152,7 @@ Notes 列表按 `tags` 生成筛选按钮，选中标签保存在 URL 的 `?tag=
 
 GitHub Pages 地址：[rapeter.github.io/my_homepage](https://rapeter.github.io/my_homepage/)。
 
-`.github/workflows/pages.yml` 在每次推送到 `main` 时自动运行测试、构建并发布 `dist/`，也可在仓库 Actions 中手动运行。使用 Node.js 22 和固定版本的 GitHub 官方 Actions，无需安装项目依赖或配置额外密钥。
+`.github/workflows/pages.yml` 在每次推送到 `main` 时自动运行测试、构建（构建时会执行全部生成步骤）并发布 `dist/`，也可在仓库 Actions 中手动运行。使用 Node.js 22 和固定版本的 GitHub 官方 Actions，无需安装项目依赖或配置额外密钥。
 
 仓库 Settings → Pages 的 Source 设为 **GitHub Actions**。工作流只上传构建后的静态网页；`scripts/`、测试和本地检查文件不进入发布产物。部署结果可在 Actions 中查看。
 

@@ -1,0 +1,11 @@
+{
+  "internships": [
+    { "organization": "力拓", "url": "https://riotinto.cn/", "title": "", "period": "", "summary": "", "highlights": [] },
+    { "organization": "通付盾", "url": "https://www.tongfudun.com/", "title": "", "period": "", "summary": "", "highlights": [] },
+    { "organization": "智己", "url": "https://www.immotors.com/", "title": "", "period": "", "summary": "", "highlights": [] }
+  ],
+  "education": [
+    { "organization": "墨尔本大学", "url": "https://www.unimelb.edu.au/", "title": "Master of Information Technology", "period": "", "summary": "", "highlights": [] },
+    { "organization": "墨尔本大学", "url": "https://www.unimelb.edu.au/", "title": "Bachelor of Science（Computing and Software System）", "period": "", "summary": "", "highlights": [] }
+  ]
+}

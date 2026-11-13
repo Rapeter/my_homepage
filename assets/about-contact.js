@@ -1,5 +1,4 @@
-const group = document.querySelector('.wechat-contact');
-if (group) {
+for (const group of document.querySelectorAll('.wechat-contact')) {
   const button = group.querySelector('.wechat-toggle');
   const popup = group.querySelector('.wechat-popup');
   let pinned = false;

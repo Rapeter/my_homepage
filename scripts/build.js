@@ -3,16 +3,22 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { generateNotes } from './notes.js';
 import { generateArticles } from './articles.js';
+import { generateProfile } from './profile.js';
+import { generateNotFound, syncLayout } from './layout.js';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const output = resolve(root, 'dist');
+// Profile writes the homepage sidebar that layout and Notes then copy to every page.
 await generateArticles();
+await generateProfile();
+await syncLayout();
+await generateNotFound();
 await generateNotes();
 // Only clean the fixed build directory inside this repository.
 if (dirname(output) !== resolve(root)) throw new Error('Invalid build output directory');
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
-for (const file of ['index.html', 'styles.css', 'assets', 'about', 'posts', 'lab', 'notes']) {
+for (const file of ['index.html', '404.html', 'styles.css', 'assets', 'about', 'posts', 'projects', 'lab', 'notes']) {
   await cp(new URL(`../${file}`, import.meta.url), `${output}/${file}`, { recursive: true });
 }
 console.log('Built static website in dist/');

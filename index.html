@@ -10,12 +10,25 @@
     <script src="./assets/theme.js"></script>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./assets/profile-card.css" />
-    <script type="module" src="./assets/about-contact.js"></script>
     <script type="module" src="./assets/profile-card.js"></script>
     <script type="module" src="./assets/home-sticker.js"></script>
+  <!-- site-head -->
+    <link rel="canonical" href="https://rapeter.github.io/my_homepage/" />
+    <meta property="og:site_name" content="Zhong" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Zhong" />
+    <meta property="og:description" content="Zhong，一个正在学习 AI 应用开发的学生。这里记录我正在做的事。" />
+    <meta property="og:url" content="https://rapeter.github.io/my_homepage/" />
+    <meta property="og:image" content="https://rapeter.github.io/my_homepage/assets/avatar.jpg" />
+    <meta name="twitter:card" content="summary" />
+    <script type="module" src="./assets/page-tools.js"></script>
+    <script type="module" src="./assets/about-contact.js"></script>
+    <!-- /site-head -->
   </head>
   <body>
     <a class="skip-link" href="#content">跳到正文</a>
+    <!-- site-header --><header class="site-header"><a class="site-brand" href="./"><img class="site-brand-avatar" src="./assets/avatar-small.jpg" alt="" width="32" height="32" /><span>Zhong</span></a><nav class="site-nav" aria-label="站点导航"><a href="./" aria-current="page">首页</a><a href="./projects/">项目</a><a href="./notes/">Notes</a><a href="./lab/agent/">小实验</a><a href="./about/">关于我</a></nav><div class="site-header-actions" data-theme-actions></div></header><!-- /site-header -->
     <div class="site-layout">
       <main id="content" class="main-column" tabindex="-1">
         <header class="intro-banner">
@@ -37,8 +50,8 @@
             <h1>你好，我是 Zhong。</h1>
             <p>一个正在学习 AI 应用开发的学生。</p>
             <p>这里记录我正在做的事。</p>
-            <nav class="home-nav" aria-label="主要导航">
-              <a href="#articles">文章</a><a href="./notes/">Notes</a><a href="./lab/agent/">小实验</a><a href="./about/">关于我</a>
+            <nav class="home-nav" aria-label="快速入口">
+              <a class="button button-primary" href="#projects">看看项目</a><a class="button" href="#articles">读文章</a><a class="button" href="./notes/">Notes</a><!-- resume:hero --><!-- /resume:hero -->
             </nav>
           </div>
         </header>
@@ -48,9 +61,25 @@
           <p class="listening-note"><span class="update-label">最近在听</span><span>刘聪 KEY.L</span></p>
         </section>
 
-        <section id="articles" class="archive" aria-label="文章列表">
+        <section id="projects" class="home-section" aria-labelledby="projects-heading">
+          <div class="section-heading"><h2 id="projects-heading">精选项目</h2><a href="./projects/">全部项目 →</a></div>
+          <!-- projects --><ul class="project-grid"><li class="project-card" id="my-homepage"><article>
+  <h3>个人主页</h3>
+  <p class="project-summary">零依赖的静态个人网站：Node.js 脚本把 Markdown 笔记生成页面，推送后由 GitHub Actions 自动测试并发布。</p>
+  <ul class="project-stack" aria-label="技术栈"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Node.js</li><li>GitHub Actions</li></ul>
+  <p class="project-links"><a href="https://github.com/Rapeter/my_homepage" rel="noopener">源码<span class="visually-hidden">（外部链接）</span> ↗</a><a href="./notes/">浏览 Notes →</a></p>
+</article></li><li class="project-card" id="agent-demo"><article>
+  <h3>Agent 工具调用演示</h3>
+  <p class="project-summary">在浏览器里逐步回放一个 Agent 搜索、读取和整理笔记的过程，展示每一步工具调用的输入、输出和最终结果。</p>
+  <ul class="project-stack" aria-label="技术栈"><li>JavaScript</li></ul>
+  <p class="project-links"><a href="./lab/agent/">打开演示 →</a></p>
+</article></li></ul><!-- /projects -->
+        </section>
+
+        <section id="articles" class="archive home-section" aria-labelledby="articles-heading">
+          <div class="section-heading"><h2 id="articles-heading">文章</h2></div>
           <div class="year-group">
-            <h2 class="archive-year">2026</h2>
+            <h3 class="archive-year">2026</h3>
             <ol class="post-list">
               <li><a href="./posts/starting/">从这个个人主页开始</a><!-- post-meta:starting --><div class="content-meta" aria-label="文章信息"><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span><time datetime="2026-10-09">2026-10-09</time></span></span><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>约 1 分钟</span></span><span class="meta-item" title="汉字逐字、英文按词统计；仅计算正文"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span>116 字</span></span><span class="meta-item meta-tags"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13l-7 7a2 2 0 0 1-3 0l-8-8V3h9l9 7a2 2 0 0 1 0 3Z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span class="tag-list"><span class="content-tag">个人网站</span></span></span></div><!-- /post-meta:starting --></li>
               <li><a href="./posts/learning-and-looking/">最近在做什么：学习 Agent 与准备求职</a><!-- post-meta:learning-and-looking --><div class="content-meta" aria-label="文章信息"><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18"/></svg><span><time datetime="2026-10-09">2026-10-09</time></span></span><span class="meta-item"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>约 1 分钟</span></span><span class="meta-item" title="汉字逐字、英文按词统计；仅计算正文"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg><span>126 字</span></span><span class="meta-item meta-tags"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13l-7 7a2 2 0 0 1-3 0l-8-8V3h9l9 7a2 2 0 0 1 0 3Z"/><circle cx="7.5" cy="7.5" r="1"/></svg><span class="tag-list"><span class="content-tag">Agent</span><span class="content-tag">求职</span></span></span></div><!-- /post-meta:learning-and-looking --></li>
@@ -67,7 +96,7 @@
             <p><strong>兴趣 /</strong> 刘聪 KEY.L、足球，也喜欢动手搭建 Agent 应用，探索工程化和 harness 的设计。</p>
           </div>
           <p class="about-link"><a href="./about/">更多关于 Zhong →</a></p>
-          <nav class="section-links" aria-label="探索"><a href="./lab/agent/">Agent 小实验 →</a><a href="./notes/">Notes →</a></nav>
+          <nav class="section-links" aria-label="探索"><a href="./projects/">项目 →</a><a href="./lab/agent/">Agent 小实验 →</a><a href="./notes/">Notes →</a></nav>
           <div class="social-links">
             <a href="mailto:kaizhong.wang@student.unimelb.edu.au" aria-label="给 Zhong 发邮件" title="Email"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></a>
             <a href="https://www.linkedin.com/in/kaizhong-wang-9410b0288/" aria-label="Zhong 的 LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M5.4 7.8H1.8V22h3.6V7.8ZM3.6 1a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM22 13.3c0-4.3-2.3-5.7-4.6-5.7a4 4 0 0 0-3.6 1.9V7.8h-3.6V22h3.6v-7.9c0-2.1 1.2-3.3 2.5-3.3s2.1.9 2.1 3.2v8H22v-8.7Z"/></svg></a>
@@ -79,7 +108,7 @@
               </div>
           </div>
           <noscript><p><a href="./assets/wechat-qr.jpg">查看微信二维码</a></p></noscript>
-          <p class="sidebar-note"><strong>正在求职。</strong> 我在丰富简历，准备面试和招聘。<a href="mailto:kaizhong.wang@student.unimelb.edu.au">通过 Email 联系我 →</a></p>
+          <p class="sidebar-note"><strong>正在求职。</strong> 我在丰富简历，准备面试和招聘。<a href="mailto:kaizhong.wang@student.unimelb.edu.au">通过 Email 联系我 →</a><!-- resume:sidebar --><!-- /resume:sidebar --></p>
         </div>
       </aside>
     </div>

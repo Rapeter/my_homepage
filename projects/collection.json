@@ -1,0 +1,36 @@
+[
+  {
+    "slug": "my-homepage",
+    "title": "个人主页",
+    "summary": "零依赖的静态个人网站：Node.js 脚本把 Markdown 笔记生成页面，推送后由 GitHub Actions 自动测试并发布。",
+    "role": "",
+    "period": "",
+    "stack": ["HTML", "CSS", "JavaScript", "Node.js", "GitHub Actions"],
+    "highlights": [
+      "Notes 支持分类、标签筛选和浏览器本地全文搜索，索引在构建时生成，不依赖后端。",
+      "面试记录支持随机抽题自测，可以展开查看当时的回答。",
+      "推送到 main 后自动运行测试、构建并部署到 GitHub Pages。"
+    ],
+    "links": [
+      { "label": "源码", "href": "https://github.com/Rapeter/my_homepage" },
+      { "label": "浏览 Notes", "href": "notes/" }
+    ],
+    "featured": true
+  },
+  {
+    "slug": "agent-demo",
+    "title": "Agent 工具调用演示",
+    "summary": "在浏览器里逐步回放一个 Agent 搜索、读取和整理笔记的过程，展示每一步工具调用的输入、输出和最终结果。",
+    "role": "",
+    "period": "",
+    "stack": ["JavaScript"],
+    "highlights": [
+      "包含正常完成、工具超时后重试、达到步数上限三种情境。",
+      "最终结果为每一项保留来源，可以展开核对示例笔记。"
+    ],
+    "links": [
+      { "label": "打开演示", "href": "lab/agent/" }
+    ],
+    "featured": true
+  }
+]

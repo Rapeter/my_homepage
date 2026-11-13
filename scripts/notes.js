@@ -57,7 +57,7 @@ export async function generateNotes() {
     </article>`;
     const directory = new URL(`../notes/${entry.slug}/`, import.meta.url);
     await mkdir(directory, { recursive: true });
-    await save(new URL('index.html', directory), await renderPage({ title: entry.title, description: entry.description, content, depth: 2, script: 'assets/notes.js' }));
+    await save(new URL('index.html', directory), await renderPage({ title: entry.title, description: entry.description, content, depth: 2, script: 'assets/notes.js', path: `notes/${entry.slug}/`, current: 'notes', section: true }));
     const listMetadata = renderContentMeta(html, entry.tags, { date: entry.updated, dateLabel: '更新于 ', tagBase: './' });
     list.push(`<li data-note-slug="${escapeHtml(entry.slug)}" data-note-category="${interview ? 'interview' : 'learning'}" data-note-tags="${escapeHtml(JSON.stringify(entry.tags || []))}"><a href="./${entry.slug}/">${escapeHtml(entry.title)}</a>${listMetadata}<p class="note-meta">${interviewDate}${escapeHtml(entry.status)}</p><p>${escapeHtml(entry.description)}</p></li>`);
   }
@@ -83,7 +83,7 @@ export async function generateNotes() {
     <p class="filter-status" data-filter-status role="status" hidden></p>
     <ul class="notes-list">${list.join('\n')}</ul>
     <script id="note-search-index" type="application/json">${JSON.stringify(searchIndex).replace(/[<>&\u2028\u2029]/g, char => `\\u${char.charCodeAt(0).toString(16).padStart(4,'0')}`)}</script>
-  </article>`, script: 'assets/notes.js' }));
+  </article>`, script: 'assets/notes.js', path: 'notes/', current: 'notes' }));
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {

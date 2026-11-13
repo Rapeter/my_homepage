@@ -7,7 +7,10 @@
   "scripts": {
     "notes": "node scripts/notes.js",
     "articles": "node scripts/articles.js",
-    "predev": "npm run articles && npm run notes",
+    "profile": "node scripts/profile.js",
+    "layout": "node scripts/layout.js",
+    "generate": "npm run articles && npm run profile && npm run layout && npm run notes",
+    "predev": "npm run generate",
     "dev": "node scripts/serve.js",
     "preview": "node scripts/serve.js dist",
     "build": "node scripts/build.js",
